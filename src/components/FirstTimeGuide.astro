@@ -1,0 +1,154 @@
+---
+const steps = [
+  {
+    num: "1",
+    title: "¿Cómo llegar y dónde estacionar?",
+    description: "Nuestra parroquia cuenta con estacionamiento lateral gratuito sobre calle San Martín y dársenas para descenso accesible. Si vienes en transporte público, las líneas 10, 24 y 52 paran a solo 100 metros del templo.",
+    icon: "map-pin"
+  },
+  {
+    num: "2",
+    title: "Al entrar al templo",
+    description: "Las puertas principales se abren 45 minutos antes de cada celebración. Si es tu primera vez, puedes sentarte en cualquier banco libre. Encontrarás cancioneros y guías litúrgicas en la entrada si deseas seguir las lecturas.",
+    icon: "home"
+  },
+  {
+    num: "3",
+    title: "Participación en la Santa Misa",
+    description: "Siéntete libre de seguir el ritmo de la asamblea (ponerse de pie, sentarse o arrodillarse). Si no profesas la fe católica o no has recibido la Primera Comunión, eres igualmente bienvenido a permanecer en tu lugar o acercarte con los brazos cruzados al pecho para recibir una bendición del sacerdote.",
+    icon: "heart"
+  },
+  {
+    num: "4",
+    title: "Accesibilidad y familias con niños",
+    description: "El templo cuenta con rampas de acceso para sillas de ruedas y cochecitos de bebé, sin desniveles pronunciados. ¡Los niños son una alegría en nuestra comunidad! Para mayor comodidad familiar, recomendamos la Misa de domingo a las 10:00 am.",
+    icon: "smile"
+  },
+  {
+    num: "5",
+    title: "¿Deseas confesarte o charlar?",
+    description: "El sacerdote está disponible en el confesionario 30 minutos antes de cada misa. Si deseas una charla espiritual más extensa o la bendición de un objeto sagrado o de tu familia, puedes acercarte al finalizar la celebración a la sacristía.",
+    icon: "shield"
+  }
+];
+---
+
+<section class="first-time-guide" id="guia-visitante" aria-labelledby="guide-title">
+  <div class="guide-header">
+    <span class="section-subtitle">Tu Primera Visita</span>
+    <h2 id="guide-title" class="guide-title">¿Vienes por primera vez? Te esperamos</h2>
+    <p class="guide-subtitle">
+      Queremos que te sientas como en tu propia casa. Aquí tienes respuestas sencillas a las dudas más frecuentes antes de visitarnos.
+    </p>
+  </div>
+
+  <div class="steps-grid">
+    {steps.map((step) => (
+      <div class="guide-step-card">
+        <div class="step-badge">{step.num}</div>
+        <div class="step-content">
+          <h3 class="step-title">{step.title}</h3>
+          <p class="step-desc">{step.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .first-time-guide {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 3.5rem 2.5rem;
+    box-shadow: var(--shadow-sm);
+    margin: 3.5rem 0;
+  }
+
+  .guide-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3rem;
+  }
+
+  .guide-title {
+    font-size: 2.1rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.8rem;
+  }
+
+  .guide-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .guide-step-card {
+    display: flex;
+    gap: 1.25rem;
+    background: var(--color-ivory-warm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    transition: var(--transition-smooth);
+  }
+
+  .guide-step-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(197, 160, 89, 0.6);
+  }
+
+  .step-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--color-burgundy);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px var(--color-burgundy-glow);
+  }
+
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .step-title {
+    font-size: 1.15rem;
+    color: var(--color-burgundy-dark);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .step-desc {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .first-time-guide {
+      padding: 2rem 1.25rem;
+    }
+    .guide-step-card {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,300 @@
+---
+import { parishData } from '../data/parishData';
+---
+
+<section class="section section-warm mass-schedule-section" id="horarios-preview" aria-labelledby="horarios-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">Vida Litúrgica y Sacramental</span>
+      <h2 class="section-title" id="horarios-heading">Horarios de Celebración y Oración</h2>
+      <div class="ornament-divider">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M5 8h14"/>
+        </svg>
+      </div>
+      <p class="section-description">
+        Te esperamos para celebrar juntos la fe. Consulta nuestros horarios confirmados de Santa Misa, Confesiones y Adoración Eucarística.
+      </p>
+    </div>
+
+    <!-- Tabs controls -->
+    <div class="schedule-tabs" role="tablist" aria-label="Categorías de horarios">
+      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="misas" id="tab-misas" aria-controls="panel-misas">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>Santas Misas</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="confesiones" id="tab-confesiones" aria-controls="panel-confesiones">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span>Confesiones</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="adoracion" id="tab-adoracion" aria-controls="panel-adoracion">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+        <span>Adoración al Santísimo</span>
+      </button>
+    </div>
+
+    <!-- Panels -->
+    <div class="tab-panels">
+      <!-- Panel 1: Misas -->
+      <div class="tab-panel active" id="panel-misas" role="tabpanel" aria-labelledby="tab-misas">
+        <div class="schedule-grid">
+          {parishData.schedules.masses.map((item) => (
+            <div class="schedule-card">
+              <div class="schedule-card-top">
+                <span class="badge badge-burgundy">{item.days}</span>
+                <div class="schedule-times">
+                  {item.times.map((t) => (
+                    <span class="schedule-time-badge">{t}</span>
+                  ))}
+                </div>
+              </div>
+              {item.note && <p class="schedule-note">{item.note}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Panel 2: Confesiones -->
+      <div class="tab-panel" id="panel-confesiones" role="tabpanel" aria-labelledby="tab-confesiones" hidden>
+        <div class="schedule-grid">
+          {parishData.schedules.confessions.map((item) => (
+            <div class="schedule-card highlight-card">
+              <div class="schedule-card-top">
+                <span class="badge badge-green">{item.days}</span>
+                <div class="schedule-times">
+                  {item.times.map((t) => (
+                    <span class="schedule-time-badge">{t}</span>
+                  ))}
+                </div>
+              </div>
+              {item.note && <p class="schedule-note">{item.note}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Panel 3: Adoración -->
+      <div class="tab-panel" id="panel-adoracion" role="tabpanel" aria-labelledby="tab-adoracion" hidden>
+        <div class="schedule-grid">
+          {parishData.schedules.adoration.map((item) => (
+            <div class="schedule-card gold-border-card">
+              <div class="schedule-card-top">
+                <span class="badge badge-gold">{item.days}</span>
+                <div class="schedule-times">
+                  {item.times.map((t) => (
+                    <span class="schedule-time-badge">{t}</span>
+                  ))}
+                </div>
+              </div>
+              {item.note && <p class="schedule-note">{item.note}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom note & CTA -->
+    <div class="schedule-footer-bar">
+      <div class="schedule-callout">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <span>
+          ¿Tienes dudas o necesitas solicitar una intención de Misa? Comunícate con Secretaría en horario de despacho.
+        </span>
+      </div>
+      <a href="/contacto" class="btn btn-secondary btn-sm">
+        Ver detalles de contacto y despacho
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mass-schedule-section {
+    background-color: var(--color-ivory-warm);
+  }
+
+  .schedule-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    background: #FFFFFF;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+
+  .tab-btn svg {
+    color: var(--color-gold-dark);
+  }
+
+  .tab-btn:hover {
+    border-color: var(--color-burgundy);
+    color: var(--color-burgundy);
+  }
+
+  .tab-btn.active {
+    background: var(--color-burgundy);
+    color: #FFFFFF;
+    border-color: var(--color-burgundy);
+    box-shadow: 0 4px 14px var(--color-burgundy-glow);
+  }
+
+  .tab-btn.active svg {
+    color: #FFFFFF;
+  }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .schedule-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .schedule-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(197, 160, 89, 0.6);
+  }
+
+  .schedule-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .schedule-times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .schedule-time-badge {
+    background: var(--color-ivory-warm);
+    border: 1px solid var(--color-border);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-burgundy-dark);
+  }
+
+  .schedule-note {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .highlight-card {
+    border-left: 4px solid var(--color-green);
+  }
+
+  .gold-border-card {
+    border-left: 4px solid var(--color-gold);
+  }
+
+  .schedule-footer-bar {
+    margin-top: 2.5rem;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+
+  .schedule-callout {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+  }
+
+  .schedule-callout svg {
+    color: var(--color-gold-dark);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 600px) {
+    .schedule-footer-bar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .schedule-card-top {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  const tabButtons = document.querySelectorAll('.schedule-tabs .tab-btn');
+  const panels = document.querySelectorAll('.tab-panels .tab-panel');
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-tab');
+
+      // Update button states
+      tabButtons.forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      // Update panel visibility
+      panels.forEach((p) => {
+        if (p.id === `panel-${target}`) {
+          p.classList.add('active');
+          p.removeAttribute('hidden');
+        } else {
+          p.classList.remove('active');
+          p.setAttribute('hidden', '');
+        }
+      });
+    });
+  });
+</script>

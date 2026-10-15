@@ -1,0 +1,173 @@
+---
+import type { Ministry } from '../data/parishData';
+
+interface Props {
+  ministry: Ministry;
+  featured?: boolean;
+}
+
+const { ministry, featured = false } = Astro.props;
+
+const categoryColorMap: Record<string, string> = {
+  jovenes: 'badge-burgundy',
+  solidaridad: 'badge-green',
+  liturgia: 'badge-gold',
+  formacion: 'badge-burgundy',
+  familia: 'badge-gold'
+};
+---
+
+<article class={`ministry-card ${featured ? 'is-featured' : ''}`} id={ministry.id} data-category={ministry.category}>
+  <div class="card-media">
+    <img 
+      src={ministry.image} 
+      alt={`Actividades de ${ministry.name}`}
+      loading="lazy" 
+      class="ministry-img"
+    />
+    <div class="media-overlay">
+      <span class={`badge ${categoryColorMap[ministry.category] || 'badge-gold'}`}>
+        {ministry.categoryLabel}
+      </span>
+    </div>
+  </div>
+
+  <div class="card-content">
+    <h3 class="ministry-title">{ministry.name}</h3>
+    <p class="ministry-desc">{ministry.shortDesc}</p>
+
+    <div class="ministry-meta">
+      <div class="meta-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span><strong>Reunión:</strong> {ministry.schedule}</span>
+      </div>
+
+      <div class="meta-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span><strong>Destinatarios:</strong> {ministry.targetAudience}</span>
+      </div>
+    </div>
+
+    <!-- Collapsible activities & details -->
+    <div class="ministry-actions">
+      <a href={`/pastorales#${ministry.id}`} class="btn btn-secondary btn-sm ministry-btn">
+        <span>Conocer más y participar</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .ministry-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+  }
+
+  .ministry-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(197, 160, 89, 0.45);
+  }
+
+  .card-media {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .ministry-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .ministry-card:hover .ministry-img {
+    transform: scale(1.05);
+  }
+
+  .media-overlay {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+  }
+
+  .card-content {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.9rem;
+  }
+
+  .ministry-title {
+    font-size: 1.25rem;
+    color: var(--color-burgundy-dark);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .ministry-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .ministry-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.85rem 0;
+    border-top: 1px dashed var(--color-border);
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .meta-item svg {
+    color: var(--color-gold-dark);
+    flex-shrink: 0;
+  }
+
+  .ministry-actions {
+    margin-top: 0.4rem;
+  }
+
+  .ministry-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ministry-btn:hover {
+    background-color: var(--color-burgundy);
+    color: #FFFFFF !important;
+    border-color: var(--color-burgundy);
+  }
+</style>

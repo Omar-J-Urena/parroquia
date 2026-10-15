@@ -1,0 +1,287 @@
+---
+import { parishData } from '../data/parishData';
+---
+
+<div class="contact-form-card" id="formulario-contacto">
+  <div class="form-header">
+    <h3 class="form-title">Envíanos tu Consulta</h3>
+    <p class="form-subtitle">
+      Completa este formulario y el equipo de secretaría o el área correspondiente te responderá a la brevedad.
+    </p>
+  </div>
+
+  <form id="parishContactForm" class="parish-form" novalidate>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fullName">Nombre y Apellido <span class="required">*</span></label>
+        <input type="text" id="fullName" name="fullName" required placeholder="Ej: María José López" />
+        <span class="field-error" id="nameError">Por favor ingresa tu nombre</span>
+      </div>
+
+      <div class="form-group">
+        <label for="contactEmail">Correo Electrónico <span class="required">*</span></label>
+        <input type="email" id="contactEmail" name="email" required placeholder="tuemail@ejemplo.com" />
+        <span class="field-error" id="emailError">Por favor ingresa un correo válido</span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="phone">Teléfono / WhatsApp</label>
+        <input type="tel" id="phone" name="phone" placeholder="Ej: +54 9 264 123-4567" />
+      </div>
+
+      <div class="form-group">
+        <label for="subjectCategory">Motivo de tu consulta <span class="required">*</span></label>
+        <select id="subjectCategory" name="category" required>
+          <option value="">Selecciona una opción...</option>
+          <option value="intencion-misa">Intención para la Santa Misa</option>
+          <option value="sacramento-bautismo">Bautismos</option>
+          <option value="sacramento-matrimonio">Bodas y Sacramentos</option>
+          <option value="catequesis">Inscripción a Catequesis</option>
+          <option value="caritas">Donaciones o Ayuda Cáritas</option>
+          <option value="grupo-pastoral">Sumarme a un Grupo Pastoral</option>
+          <option value="otro">Consulta General a Secretaría</option>
+        </select>
+        <span class="field-error" id="categoryError">Por favor selecciona un motivo</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Mensaje o Detalle de la Solicitud <span class="required">*</span></label>
+      <textarea id="message" name="message" rows="4" required placeholder="Escribe aquí tu consulta, nombres para la intención o detalles que necesites comunicarnos..."></textarea>
+      <span class="field-error" id="messageError">Por favor escribe tu mensaje</span>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+        <span>Enviar Mensaje</span>
+      </button>
+
+      <button type="button" class="btn btn-whatsapp" id="sendWhatsAppBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.199.534 1.286.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.353.101.173.45 1.742 1.97 2.08.188.043.332-.014.419-.101.087-.087.375-.434.476-.58.101-.145.202-.116.347-.058s.924.434 1.083.52c.159.087.26.13.299.202.043.072.043.419-.101.824z"/>
+        </svg>
+        <span>Enviar por WhatsApp Directo</span>
+      </button>
+    </div>
+
+    <!-- Feedback Banner -->
+    <div id="formSuccess" class="form-feedback form-success" hidden>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+      <div>
+        <strong>¡Mensaje recibido con éxito!</strong>
+        <p>Gracias por comunicarte con la parroquia. Nos pondremos en contacto contigo a la brevedad.</p>
+      </div>
+    </div>
+  </form>
+</div>
+
+<style>
+  .contact-form-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .form-header {
+    margin-bottom: 2rem;
+  }
+
+  .form-title {
+    font-size: 1.6rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .parish-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .required {
+    color: var(--color-burgundy);
+  }
+
+  input, select, textarea {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-ivory-bg);
+    color: var(--color-text-main);
+    transition: var(--transition-smooth);
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-burgundy);
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px var(--color-burgundy-glow);
+  }
+
+  .field-error {
+    font-size: 0.8rem;
+    color: #DC2626;
+    display: none;
+  }
+
+  .field-error.visible {
+    display: block;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .form-feedback {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    margin-top: 1rem;
+  }
+
+  .form-success {
+    background-color: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    color: #065F46;
+  }
+
+  .form-success svg {
+    color: #059669;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .form-success p {
+    margin: 0.25rem 0 0;
+    font-size: 0.88rem;
+    color: #047857;
+  }
+
+  @media (max-width: 768px) {
+    .contact-form-card {
+      padding: 1.75rem 1.25rem;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    .form-actions {
+      flex-direction: column;
+    }
+    .form-actions button {
+      width: 100%;
+    }
+  }
+</style>
+
+<script define:vars={{ whatsappNumber: parishData.contact.whatsapp }}>
+  const form = document.getElementById('parishContactForm');
+  const nameInput = document.getElementById('fullName');
+  const emailInput = document.getElementById('contactEmail');
+  const categoryInput = document.getElementById('subjectCategory');
+  const messageInput = document.getElementById('message');
+  const phoneInput = document.getElementById('phone');
+  const successBox = document.getElementById('formSuccess');
+  const waBtn = document.getElementById('sendWhatsAppBtn');
+
+  // WhatsApp quick trigger
+  waBtn?.addEventListener('click', () => {
+    const name = nameInput.value.trim() || 'Un feligrés';
+    const category = categoryInput.options[categoryInput.selectedIndex]?.text || 'Consulta general';
+    const msg = messageInput.value.trim();
+    
+    let text = `Hola Parroquia San Lorenzo. Mi nombre es ${name}.\nMotivo: ${category}.\n`;
+    if (msg) text += `Mensaje: ${msg}`;
+    
+    const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+  });
+
+  // Standard form submission
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    // Validate Name
+    if (!nameInput.value.trim()) {
+      document.getElementById('nameError')?.classList.add('visible');
+      valid = false;
+    } else {
+      document.getElementById('nameError')?.classList.remove('visible');
+    }
+
+    // Validate Email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value.trim())) {
+      document.getElementById('emailError')?.classList.add('visible');
+      valid = false;
+    } else {
+      document.getElementById('emailError')?.classList.remove('visible');
+    }
+
+    // Validate Category
+    if (!categoryInput.value) {
+      document.getElementById('categoryError')?.classList.add('visible');
+      valid = false;
+    } else {
+      document.getElementById('categoryError')?.classList.remove('visible');
+    }
+
+    // Validate Message
+    if (!messageInput.value.trim()) {
+      document.getElementById('messageError')?.classList.add('visible');
+      valid = false;
+    } else {
+      document.getElementById('messageError')?.classList.remove('visible');
+    }
+
+    if (valid) {
+      successBox?.removeAttribute('hidden');
+      form.reset();
+      setTimeout(() => {
+        successBox?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  });
+</script>

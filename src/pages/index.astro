@@ -1,0 +1,632 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import MassSchedulePreview from '../components/MassSchedulePreview.astro';
+import MinistryCard from '../components/MinistryCard.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import { parishData } from '../data/parishData';
+
+const featuredMinistries = parishData.ministries.slice(0, 3);
+const recentExperiences = parishData.experiences.slice(0, 3);
+---
+
+<Layout title={`${parishData.name} | Sede Digital Oficial`}>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Mass Schedules Preview Widget -->
+  <MassSchedulePreview />
+
+  <!-- Parish Priest Welcome & Identity Highlight -->
+  <section class="section section-white welcome-section">
+    <div class="container">
+      <div class="welcome-grid">
+        <div class="welcome-image-col">
+          <div class="welcome-img-wrapper">
+            <img 
+              src="/images/6.jpeg" 
+              alt="Comunidad de la Parroquia San Lorenzo durante una celebración litúrgica en Santiago Oeste" 
+              class="welcome-img"
+              loading="lazy"
+            />
+            <div class="welcome-badge-float">
+              <span class="float-year">{parishData.foundedYear}</span>
+              <span class="float-text">Más de 60 años caminando juntos en la fe</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-text-col">
+          <span class="section-subtitle">Nuestra Identidad</span>
+          <h2 class="welcome-title">Una comunidad viva que camina y celebra unida</h2>
+          <div class="ornament-divider align-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M5 8h14"/>
+            </svg>
+          </div>
+          <p class="lead-text">
+            La Parroquia San Lorenzo es un importante centro de vida espiritual, comunitaria y cultural situada en el sector de Cienfuegos / Monte Bonito, dentro del municipio de Santiago Oeste (Santiago de los Caballeros).
+          </p>
+          <p>
+            Perteneciente a la Arquidiócesis de Santiago de los Caballeros, nuestra comunidad entrelaza la fe con iniciativas artísticas como el Coro Infantil de San Lorenzo, la acción social con centros educativos y la formación humana y en valores de los sectores populares.
+          </p>
+
+          <div class="welcome-pillars">
+            <div class="pillar-mini">
+              <div class="pillar-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 8h14"/></svg>
+              </div>
+              <div>
+                <strong>Fe y Eucaristía</strong>
+                <span>Celebraciones litúrgicas sentidas</span>
+              </div>
+            </div>
+
+            <div class="pillar-mini">
+              <div class="pillar-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div>
+                <strong>Caridad Activa</strong>
+                <span>Atención samaritana con Cáritas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="welcome-action">
+            <a href="/nuestra-parroquia" class="btn btn-primary">
+              <span>Conoce nuestra historia y sacerdotes</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Patron Saint Callout Banner (San Lorenzo Mártir) -->
+  <section class="section section-patron-spotlight">
+    <div class="container">
+      <div class="patron-spotlight-card">
+        <div class="patron-spotlight-img-wrap">
+          <img 
+            src="/images/san-lorenzo-martir.png" 
+            alt="Óleo sagrado de San Lorenzo Mártir" 
+            class="patron-spotlight-img"
+            loading="lazy" 
+          />
+        </div>
+        <div class="patron-spotlight-content">
+          <span class="badge badge-gold">Patrono Titular · Fiesta 10 de Agosto</span>
+          <h2 class="patron-spotlight-title">San Lorenzo Mártir</h2>
+          <p class="patron-spotlight-lead">
+            Diácono de la Iglesia de Roma en el siglo III. Célebre por defender a los necesitados frente al poder imperial y proclamar con su vida:
+          </p>
+          <blockquote class="patron-spotlight-quote">
+            «Estos son los verdaderos tesoros de la Iglesia: los pobres, los enfermos y los marginados.»
+          </blockquote>
+          <p class="patron-spotlight-sub">
+            Patrono protector de diáconos, cocineros, bomberos, bibliotecarios y comediantes. Su valentía ante la prueba del fuego inspira el corazón de Cienfuegos y Santiago Oeste.
+          </p>
+          <div class="patron-spotlight-action">
+            <a href="/nuestra-parroquia#santo-patrono" class="btn btn-secondary">
+              <span>Leer historia completa de San Lorenzo</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Pastoral Groups -->
+  <section class="section section-warm ministries-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Participación Comunitaria</span>
+        <h2 class="section-title">Grupos Pastorales y Ministerios</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+        <p class="section-description">
+          Dios nos llama a cada uno con talentos únicos. Encuentra el grupo donde formarte, compartir tu fe o brindar tu servicio a la comunidad.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {featuredMinistries.map((m) => (
+          <MinistryCard ministry={m} featured={true} />
+        ))}
+      </div>
+
+      <div class="section-cta-center">
+        <a href="/pastorales" class="btn btn-secondary">
+          <span>Ver todos los grupos y horarios de reunión</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Community Experiences & Gallery -->
+  <section class="section section-white experiences-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Vida en Comunidad</span>
+        <h2 class="section-title">Experiencias y Recuerdos Parroquiales</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+        <p class="section-description">
+          Momentos compartidos que construyen memoria y fraternidad: fiestas patronales, misiones, retiros y celebraciones sacramentales.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {recentExperiences.map((exp) => (
+          <ExperienceCard experience={exp} />
+        ))}
+      </div>
+
+      <div class="section-cta-center">
+        <a href="/experiencias" class="btn btn-primary">
+          <span>Explorar galería completa de fotos</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Announcements / Community Life -->
+  <section class="section section-warm announcements-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Agenda y Anuncios</span>
+        <h2 class="section-title">Próximas Actividades</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="announcements-grid">
+        {parishData.announcements.map((item) => (
+          <div class="announcement-card">
+            <div class="announcement-badge-row">
+              <span class="badge badge-burgundy">{item.badge}</span>
+              <span class="announcement-date">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                {item.date} {item.time ? `• ${item.time}` : ''}
+              </span>
+            </div>
+            <h3 class="announcement-title">{item.title}</h3>
+            <p class="announcement-location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              {item.location}
+            </p>
+            <p class="announcement-summary">{item.summary}</p>
+            {item.linkText && item.linkHref && (
+              <a href={item.linkHref} class="announcement-link">
+                {item.linkText} →
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Location and Call to Action Banner -->
+  <section class="section section-white visit-cta-section">
+    <div class="container">
+      <div class="visit-banner">
+        <div class="visit-banner-content">
+          <span class="badge badge-gold">Te Esperamos</span>
+          <h2 class="visit-banner-title">Nuestras puertas están abiertas para ti</h2>
+          <p class="visit-banner-text">
+            Acércate a rezar en silencio, a participar de la Santa Misa o a conversar con nosotros. Estamos ubicados en {parishData.address.street}, {parishData.address.neighborhood}.
+          </p>
+          <div class="visit-banner-actions">
+            <a href="/contacto" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Cómo Llegar y Contacto</span>
+            </a>
+            <a 
+              href={`https://wa.me/${parishData.contact.whatsapp}?text=${encodeURIComponent(parishData.contact.whatsappMessage)}`} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn btn-whatsapp"
+            >
+              <span>Escribir por WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Welcome Grid */
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .welcome-img-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .welcome-img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+  }
+
+  .welcome-badge-float {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-gold);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-md);
+    max-width: 280px;
+  }
+
+  .float-year {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+  }
+
+  .float-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    line-height: 1.3;
+  }
+
+  .align-left {
+    margin-left: 0;
+  }
+
+  .lead-text {
+    font-size: 1.15rem;
+    color: var(--color-text-main);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--color-ivory-warm);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .pillar-mini {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .pillar-mini .pillar-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    background: #FFFFFF;
+    color: var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pillar-mini strong {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--color-burgundy-dark);
+  }
+
+  .pillar-mini span {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+  }
+
+  .welcome-action {
+    margin-top: 1.5rem;
+  }
+
+  /* Grid layout */
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .section-cta-center {
+    text-align: center;
+    margin-top: 3.5rem;
+  }
+
+  /* Announcements */
+  .announcements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .announcement-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: var(--transition-smooth);
+  }
+
+  .announcement-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(197, 160, 89, 0.5);
+  }
+
+  .announcement-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .announcement-date {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+  }
+
+  .announcement-title {
+    font-size: 1.25rem;
+    color: var(--color-burgundy-dark);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .announcement-location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--color-gold-dark);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .announcement-summary {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+  }
+
+  .announcement-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-burgundy);
+    padding-top: 0.5rem;
+  }
+
+  /* Visit Banner */
+  .visit-banner {
+    background: linear-gradient(135deg, var(--color-green), #14241F);
+    color: #FFFFFF;
+    border-radius: var(--radius-lg);
+    padding: 4rem 3rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .visit-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+  }
+
+  .visit-banner-content {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .visit-banner-title {
+    color: #FFFFFF;
+    font-size: 2.3rem;
+    margin: 1rem 0;
+  }
+
+  .visit-banner-text {
+    color: #E2D9D2;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .visit-banner-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Patron Spotlight Card */
+  .section-patron-spotlight {
+    padding: 2.5rem 0 3.5rem;
+    background: #faf7f2;
+  }
+
+  .patron-spotlight-card {
+    background: linear-gradient(135deg, var(--color-burgundy-dark) 0%, var(--color-burgundy) 100%);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 2.5rem;
+    color: #ffffff;
+    box-shadow: 0 16px 40px -10px rgba(114, 34, 55, 0.35);
+    border: 1px solid rgba(197, 160, 89, 0.35);
+  }
+
+  .patron-spotlight-img-wrap {
+    width: 240px;
+    height: 300px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid var(--color-gold);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .patron-spotlight-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .patron-spotlight-card:hover .patron-spotlight-img {
+    transform: scale(1.04);
+  }
+
+  .patron-spotlight-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .patron-spotlight-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .patron-spotlight-lead {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .patron-spotlight-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-gold);
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 3px solid var(--color-gold);
+    padding: 0.8rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0.2rem 0;
+  }
+
+  .patron-spotlight-sub {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .patron-spotlight-action {
+    margin-top: 0.5rem;
+  }
+
+  .patron-spotlight-action .btn-secondary {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
+
+  .patron-spotlight-action .btn-secondary:hover {
+    background: #ffffff;
+    color: var(--color-burgundy-dark);
+  }
+
+  @media (max-width: 860px) {
+    .patron-spotlight-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+
+    .patron-spotlight-img-wrap {
+      margin: 0 auto;
+      width: 200px;
+      height: 250px;
+    }
+
+    .patron-spotlight-quote {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .welcome-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .welcome-img {
+      height: 360px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .welcome-pillars {
+      grid-template-columns: 1fr;
+    }
+    .visit-banner {
+      padding: 2.5rem 1.5rem;
+    }
+    .visit-banner-title {
+      font-size: 1.75rem;
+    }
+  }
+</style>

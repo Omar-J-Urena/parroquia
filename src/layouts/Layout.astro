@@ -1,0 +1,96 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { parishData } from '../data/parishData';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = `${parishData.name} | Sede Digital Oficial`,
+  description = `${parishData.name} - ${parishData.diocese}. Información de misas, sacramentos, grupos pastorales, catequesis, Cáritas y vida comunitaria.`,
+  image = '/images/hero-sanctuary.jpg'
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const pageTitle = title.includes(parishData.name) ? title : `${title} | ${parishData.name}`;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Primary Meta Tags -->
+  <title>{pageTitle}</title>
+  <meta name="title" content={pageTitle} />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content={parishData.fullName} />
+  <meta name="theme-color" content="#722237" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:site_name" content={parishData.fullName} />
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={Astro.url} />
+  <meta property="twitter:title" content={pageTitle} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={image} />
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+  <!-- Accessibility skip link -->
+  <a href="#mainContent" class="skip-to-content">Saltar al contenido principal</a>
+
+  <Header currentPath={currentPath} />
+
+  <main id="mainContent">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <style>
+    .skip-to-content {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--color-burgundy);
+      color: #FFFFFF;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-sm);
+      z-index: 1000;
+      font-weight: 600;
+      transition: top 0.2s ease;
+      text-decoration: none;
+    }
+
+    .skip-to-content:focus {
+      top: 1rem;
+      outline: 3px solid var(--color-gold);
+    }
+
+    main {
+      flex: 1;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,379 @@
+---
+import { parishData } from '../data/parishData';
+---
+
+<section class="hero-section" aria-label="Introducción parroquial">
+  <div class="hero-backdrop">
+    <img 
+      src="/images/24.jpeg" 
+      alt="Comunidad y templo de la Parroquia San Lorenzo en Santiago Oeste" 
+      class="hero-bg-img" 
+      fetchpriority="high"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-container">
+    <div class="hero-content">
+      <div class="hero-badge-wrap">
+        <span class="badge badge-gold">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+          {parishData.diocese} • Fundada en {parishData.foundedYear}
+        </span>
+      </div>
+
+      <h1 class="hero-title">
+        Bienvenidos a la Casa del Señor
+      </h1>
+
+      <p class="hero-quote">
+        «{parishData.welcomeQuote}»
+      </p>
+
+      <p class="hero-description">
+        {parishData.welcomeMessage}
+      </p>
+
+      <div class="hero-actions">
+        <a href="/nuestra-parroquia" class="btn btn-primary hero-btn">
+          <span>Conócenos</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <a href="/contacto" class="btn btn-secondary hero-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Visítanos y Horarios</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Mass Info Card -->
+    <aside class="hero-card" aria-label="Información rápida de misas">
+      <div class="hero-card-header">
+        <div class="card-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div>
+          <span class="card-kicker">Horarios de Celebración</span>
+          <h2 class="card-title">Santa Eucaristía</h2>
+        </div>
+      </div>
+
+      <div class="hero-card-body">
+        <div class="mass-row">
+          <div class="mass-day">
+            <strong>Lunes a Viernes</strong>
+            <span class="mass-type">Misa matutina y vespertina</span>
+          </div>
+          <div class="mass-times">
+            <span class="time-tag">7:00 am</span>
+            <span class="time-tag">6:30 pm</span>
+          </div>
+        </div>
+
+        <div class="mass-row">
+          <div class="mass-day">
+            <strong>Sábados</strong>
+            <span class="mass-type">Vísperas comunitarias</span>
+          </div>
+          <div class="mass-times">
+            <span class="time-tag">6:30 pm</span>
+          </div>
+        </div>
+
+        <div class="mass-row primary-mass">
+          <div class="mass-day">
+            <strong>Domingos</strong>
+            <span class="mass-type">Misas dominicales</span>
+          </div>
+          <div class="mass-times">
+            <span class="time-tag">8:00 am</span>
+            <span class="time-tag highlight">10:00 am</span>
+            <span class="time-tag">6:30 pm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card-footer">
+        <div class="confession-notice">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span><strong>Confesiones:</strong> 30 min antes de cada Misa</span>
+        </div>
+        <a href="/contacto#horarios" class="card-link">Ver calendario completo y confesiones →</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 5rem 0;
+    overflow: hidden;
+  }
+
+  .hero-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.02);
+    filter: brightness(0.92);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg, 
+      rgba(28, 20, 24, 0.88) 0%, 
+      rgba(78, 21, 36, 0.78) 55%, 
+      rgba(30, 53, 47, 0.72) 100%
+    );
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.25fr 0.9fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    color: #FFFFFF;
+  }
+
+  .hero-badge-wrap {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    color: #FFFFFF;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--color-gold-light);
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+    border-left: 3px solid var(--color-gold);
+    padding-left: 1.2rem;
+  }
+
+  .hero-description {
+    color: #F0E6DE;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+    max-width: 580px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-btn {
+    padding: 0.95rem 2rem;
+    font-size: 1.05rem;
+  }
+
+  /* Mass Quick Card */
+  .hero-card {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    padding: 2.25rem;
+    color: var(--color-text-main);
+  }
+
+  .hero-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .card-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-burgundy-glow);
+    color: var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-kicker {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gold-dark);
+    display: block;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    color: var(--color-burgundy-dark);
+    margin: 0;
+  }
+
+  .hero-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mass-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .mass-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .mass-row.primary-mass {
+    background-color: var(--color-ivory-warm);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    border-bottom: none;
+    border: 1px solid var(--color-border);
+  }
+
+  .mass-day strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+  }
+
+  .mass-type {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+  }
+
+  .mass-times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .time-tag {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-burgundy);
+  }
+
+  .time-tag.highlight {
+    background: var(--color-burgundy);
+    color: #FFFFFF;
+    border-color: var(--color-burgundy);
+  }
+
+  .hero-card-footer {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .confession-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--color-green);
+    background: rgba(30, 53, 47, 0.08);
+    padding: 0.6rem 0.8rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+  }
+
+  .card-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-burgundy);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .card-link:hover {
+    color: var(--color-gold-dark);
+  }
+
+  @media (max-width: 992px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .hero-card {
+      max-width: 520px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-section {
+      min-height: auto;
+      padding: 3.5rem 0;
+    }
+    .hero-actions {
+      flex-direction: column;
+    }
+    .hero-btn {
+      width: 100%;
+      text-align: center;
+    }
+    .mass-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+  }
+</style>

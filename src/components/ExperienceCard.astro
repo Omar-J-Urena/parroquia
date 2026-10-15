@@ -1,0 +1,154 @@
+---
+import type { Experience } from '../data/parishData';
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience } = Astro.props;
+---
+
+<article class="experience-card" data-category={experience.category}>
+  <div class="exp-media-wrap">
+    <img 
+      src={experience.image} 
+      alt={experience.title} 
+      loading="lazy" 
+      class="exp-img" 
+    />
+    <div class="exp-badges">
+      <span class="badge badge-gold">{experience.category}</span>
+      <span class="badge badge-dark">{experience.date}</span>
+    </div>
+  </div>
+
+  <div class="exp-content">
+    {experience.relatedMinistry && (
+      <span class="exp-ministry-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 8v8M8 12h8"></path>
+        </svg>
+        {experience.relatedMinistry}
+      </span>
+    )}
+    <h3 class="exp-title">{experience.title}</h3>
+    <p class="exp-desc">{experience.description}</p>
+    
+    <div class="exp-footer">
+      <a href="/experiencias" class="exp-link">
+        <span>Ver álbum fotográfico</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .experience-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+  }
+
+  .experience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(197, 160, 89, 0.4);
+  }
+
+  .exp-media-wrap {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+
+  .exp-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+
+  .experience-card:hover .exp-img {
+    transform: scale(1.06);
+  }
+
+  .exp-badges {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    z-index: 2;
+  }
+
+  .badge-dark {
+    background: rgba(28, 20, 24, 0.85);
+    color: #FAF5EE;
+    backdrop-filter: blur(4px);
+  }
+
+  .exp-content {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.75rem;
+  }
+
+  .exp-ministry-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-burgundy);
+  }
+
+  .exp-title {
+    font-size: 1.3rem;
+    color: var(--color-burgundy-dark);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .exp-desc {
+    font-size: 0.94rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .exp-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .exp-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-burgundy);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: var(--transition-smooth);
+  }
+
+  .exp-link:hover {
+    color: var(--color-gold-dark);
+    gap: 0.6rem;
+  }
+</style>

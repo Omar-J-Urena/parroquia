@@ -1,0 +1,590 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FirstTimeGuide from '../components/FirstTimeGuide.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { parishData } from '../data/parishData';
+---
+
+<Layout 
+  title={`Visítanos y Contacto | ${parishData.name}`}
+  description={`Encuentra la dirección oficial, mapa, horarios completos de misa, confesiones, despacho parroquial y formulario de contacto de la ${parishData.name}.`}
+>
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container page-banner-inner">
+      <span class="badge badge-gold">Ubicación y Atención</span>
+      <h1 class="page-banner-title">Visítanos y Contacto</h1>
+      <p class="page-banner-sub">
+        Estamos a tu disposición para acompañarte. Encuentra nuestras vías oficiales de comunicación, secretaría parroquial y horarios de celebración.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quick Action Contact Strip -->
+  <section class="contact-quick-strip">
+    <div class="container">
+      <div class="quick-cards-grid">
+        <!-- Card 1: Dirección -->
+        <div class="quick-card">
+          <div class="quick-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="quick-info">
+            <span class="quick-label">Dirección Oficial</span>
+            <strong>{parishData.address.street}</strong>
+            <p>{parishData.address.neighborhood}, {parishData.address.city}</p>
+            <a href={parishData.address.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="quick-link">
+              Abrir en Google Maps →
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: WhatsApp -->
+        <div class="quick-card highlight-wa">
+          <div class="quick-icon-wrap wa-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.199.534 1.286.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.353.101.173.45 1.742 1.97 2.08.188.043.332-.014.419-.101.087-.087.375-.434.476-.58.101-.145.202-.116.347-.058s.924.434 1.083.52c.159.087.26.13.299.202.043.072.043.419-.101.824z"/>
+            </svg>
+          </div>
+          <div class="quick-info">
+            <span class="quick-label">WhatsApp Directo</span>
+            <strong>Atención Rápida</strong>
+            <p>Consultas sobre trámites o intenciones</p>
+            <a href={`https://wa.me/${parishData.contact.whatsapp}?text=${encodeURIComponent(parishData.contact.whatsappMessage)}`} target="_blank" rel="noopener noreferrer" class="quick-link wa-link">
+              Escribir ahora por chat →
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3: Teléfono y Correo -->
+        <div class="quick-card">
+          <div class="quick-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <div class="quick-info">
+            <span class="quick-label">Teléfono y Correo</span>
+            <a href={`tel:${parishData.contact.phone}`} class="phone-num">{parishData.contact.phoneDisplay}</a>
+            <p><a href={`mailto:${parishData.contact.email}`} class="mail-link">{parishData.contact.email}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete Verified Schedules Section -->
+  <section class="section section-white schedules-section" id="horarios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Horarios Oficiales Confirmados</span>
+        <h2 class="section-title">Calendario Semanal de Misas y Servicios</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+        <p class="section-description">
+          Información verificada y permanentemente actualizada por el equipo sacerdotal.
+        </p>
+      </div>
+
+      <div class="tables-grid">
+        <!-- Santa Misa Table -->
+        <div class="table-box">
+          <div class="table-box-header">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <h3>Santas Misas</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Días</th>
+                  <th>Horarios</th>
+                  <th>Detalle</th>
+                </tr>
+              </thead>
+              <tbody>
+                {parishData.schedules.masses.map((m) => (
+                  <tr>
+                    <td><strong>{m.days}</strong></td>
+                    <td>
+                      <div class="times-cell">
+                        {m.times.map((t) => <span class="time-chip">{t}</span>)}
+                      </div>
+                    </td>
+                    <td><span class="note-text">{m.note}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Confesiones y Adoración Table -->
+        <div class="table-box">
+          <div class="table-box-header">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <h3>Confesiones y Adoración</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Celebración</th>
+                  <th>Días y Horarios</th>
+                  <th>Ubicación y Nota</th>
+                </tr>
+              </thead>
+              <tbody>
+                {parishData.schedules.confessions.map((c) => (
+                  <tr>
+                    <td><strong>Confesiones</strong></td>
+                    <td>
+                      <div class="times-cell">
+                        <span class="days-pill">{c.days}</span>
+                        {c.times.map((t) => <span class="time-chip">{t}</span>)}
+                      </div>
+                    </td>
+                    <td><span class="note-text">{c.note}</span></td>
+                  </tr>
+                ))}
+                {parishData.schedules.adoration.map((a) => (
+                  <tr class="adoration-row">
+                    <td><strong>Adoración al Santísimo</strong></td>
+                    <td>
+                      <div class="times-cell">
+                        <span class="days-pill gold-pill">{a.days}</span>
+                        {a.times.map((t) => <span class="time-chip gold-chip">{t}</span>)}
+                      </div>
+                    </td>
+                    <td><span class="note-text">{a.note}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Despacho Parroquial Note -->
+      <div class="office-box">
+        <div class="office-box-inner">
+          <div class="office-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="office-text">
+            <h4>Secretaría y Despacho Parroquial</h4>
+            <p>
+              <strong>Horario habitual:</strong> {parishData.contact.officeHours}
+            </p>
+            <p class="office-subtext">
+              Para trámites sacramentales (fe de bautismo, certificados, apertura de expedientes matrimoniales) por favor acudir con documento de identidad y con anticipación sugerida de 30 días.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map and Form Grid -->
+  <section class="section section-warm map-and-form-section">
+    <div class="container">
+      <div class="map-form-grid">
+        <!-- Left: Map & Directions -->
+        <div class="map-column">
+          <div class="map-card">
+            <div class="map-card-header">
+              <h3>Ubicación del Templo</h3>
+              <p>{parishData.address.street}, {parishData.address.neighborhood}</p>
+            </div>
+            
+            <div class="map-wrapper">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13600.00000000000!2d-68.530000!3d-31.530000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDMxJzQ4LjAiUyA2OMKwMzEnNDguMCJX!5e0!3m2!1ses!2s!4v1600000000000!5m2!1ses!2s" 
+                width="100%" 
+                height="340" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa de ubicación de la parroquia"
+              ></iframe>
+            </div>
+
+            <div class="map-card-footer">
+              <a href={parishData.address.googleMapsUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Abrir en aplicación de mapas</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Contact & Sacramental Inquiry Form -->
+        <div class="form-column">
+          <ContactForm />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visitor Guide Component (First-Time Guidance) -->
+  <section class="section section-white">
+    <div class="container">
+      <FirstTimeGuide />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Banner */
+  .page-banner {
+    background: linear-gradient(135deg, var(--color-burgundy-dark), var(--color-burgundy));
+    color: #FFFFFF;
+    padding: 5rem 0 4.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .page-banner-inner {
+    max-width: 780px;
+  }
+
+  .page-banner-title {
+    color: #FFFFFF;
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    margin: 1rem 0 1.2rem;
+  }
+
+  .page-banner-sub {
+    color: #F2E9E3;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Quick Cards */
+  .contact-quick-strip {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem 0;
+  }
+
+  .quick-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .quick-card {
+    background: var(--color-ivory-warm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: var(--transition-smooth);
+  }
+
+  .quick-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .highlight-wa {
+    border-color: #86EFAC;
+    background: #F0FDF4;
+  }
+
+  .quick-icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-sm);
+    background: #FFFFFF;
+    color: var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .wa-icon {
+    color: #16A34A;
+  }
+
+  .quick-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .quick-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-light);
+  }
+
+  .quick-info strong {
+    font-size: 1.05rem;
+    color: var(--color-text-main);
+  }
+
+  .quick-info p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .quick-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-burgundy);
+    margin-top: 0.4rem;
+  }
+
+  .wa-link {
+    color: #15803D !important;
+  }
+
+  .phone-num {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-burgundy-dark);
+  }
+
+  .mail-link {
+    color: var(--color-text-muted);
+  }
+
+  /* Tables Grid */
+  .tables-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .table-box {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .table-box-header {
+    background: var(--color-ivory-warm);
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .table-box-header svg {
+    color: var(--color-burgundy);
+  }
+
+  .table-box-header h3 {
+    font-size: 1.25rem;
+    color: var(--color-burgundy-dark);
+    margin: 0;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  .schedule-table th {
+    background: #FAF7F2;
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .schedule-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    vertical-align: top;
+  }
+
+  .schedule-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .times-cell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .time-chip {
+    background: var(--color-burgundy-glow);
+    color: var(--color-burgundy);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .gold-chip {
+    background: var(--color-gold-glow);
+    color: var(--color-gold-dark);
+  }
+
+  .days-pill {
+    background: var(--color-ivory-warm);
+    border: 1px solid var(--color-border);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
+  .note-text {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+  }
+
+  .adoration-row td {
+    background: rgba(197, 160, 89, 0.04);
+  }
+
+  /* Office Box */
+  .office-box {
+    background: var(--color-ivory-warm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+  }
+
+  .office-box-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .office-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: var(--radius-sm);
+    background: #FFFFFF;
+    color: var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .office-text h4 {
+    font-size: 1.2rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .office-text p {
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  .office-subtext {
+    font-size: 0.88rem !important;
+    color: var(--color-text-muted) !important;
+    margin-top: 0.4rem !important;
+  }
+
+  /* Map and Form Grid */
+  .map-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .map-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .map-card-header {
+    padding: 1.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .map-card-header h3 {
+    font-size: 1.35rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.3rem;
+  }
+
+  .map-card-header p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .map-wrapper {
+    height: 340px;
+    background: var(--color-ivory-warm);
+  }
+
+  .map-card-footer {
+    padding: 1.25rem 1.75rem;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-ivory-warm);
+    text-align: center;
+  }
+
+  @media (max-width: 992px) {
+    .tables-grid {
+      grid-template-columns: 1fr;
+    }
+    .map-form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .office-box-inner {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>

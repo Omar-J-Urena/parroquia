@@ -1,0 +1,951 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { parishData } from '../data/parishData';
+---
+
+<Layout 
+  title={`Nuestra Parroquia | ${parishData.name}`}
+  description={`Conoce la historia, misión, sacerdotes y valores de la ${parishData.name}. Un hogar de fe y fraternidad fundado en ${parishData.foundedYear}.`}
+>
+  <!-- Page Header Banner -->
+  <section class="page-banner">
+    <div class="container page-banner-inner">
+      <span class="badge badge-gold">Identidad e Historia</span>
+      <h1 class="page-banner-title">Nuestra Parroquia</h1>
+      <p class="page-banner-sub">
+        Un hogar espiritual cimentado en el amor de Cristo, el servicio al prójimo y seis décadas de fraternidad comunitaria.
+      </p>
+    </div>
+  </section>
+
+  <!-- Misión, Visión y Pilares -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Nuestra Razón de Ser</span>
+        <h2 class="section-title">Misión, Visión y Pilares Pastorales</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="mission-vision-grid">
+        <div class="mv-card mission-card">
+          <div class="mv-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3>Nuestra Misión</h3>
+          <p>{parishData.values.mission}</p>
+        </div>
+
+        <div class="mv-card vision-card">
+          <div class="mv-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <h3>Nuestra Visión</h3>
+          <p>{parishData.values.vision}</p>
+        </div>
+      </div>
+
+      <!-- 4 Core Pillars -->
+      <div class="pillars-grid">
+        {parishData.values.pillars.map((pillar) => (
+          <div class="pillar-card">
+            <div class="pillar-badge">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M5 8h14"/>
+              </svg>
+            </div>
+            <h4>{pillar.title}</h4>
+            <p>{pillar.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Santo Patrono: San Lorenzo Mártir -->
+  <section class="section section-warm patron-section" id="santo-patrono">
+    <div class="container">
+      <div class="patron-hero-grid">
+        <!-- Columna de imagen e icono del Santo -->
+        <div class="patron-image-col">
+          <div class="patron-portrait-frame">
+            <div class="patron-portrait-glow"></div>
+            <img 
+              src={parishData.patronDetails?.image || "/images/san-lorenzo-martir.png"} 
+              alt="Pintura de San Lorenzo Mártir con dalmática, palma y parrilla" 
+              class="patron-portrait-img"
+              loading="lazy"
+            />
+            <div class="patron-portrait-caption">
+              <span class="caption-saint">{parishData.patronDetails?.name || "San Lorenzo Mártir"}</span>
+              <span class="caption-details">Diácono de Roma · {parishData.patronDetails?.century || "Siglo III (258 d. C.)"}</span>
+            </div>
+          </div>
+
+          <div class="patron-feast-badge-box">
+            <div class="feast-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Solemne Fiesta Patronal: {parishData.patronFeastDate}</strong>
+              <span>Celebración litúrgica y procesión comunitaria en Cienfuegos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna de datos y biografía histórica -->
+        <div class="patron-info-col">
+          <span class="badge badge-gold">Patrono de Nuestra Comunidad</span>
+          <h2 class="patron-title">{parishData.patronDetails?.name || parishData.patronSaint}</h2>
+          <div class="ornament-divider align-left">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M5 8h14"/>
+            </svg>
+          </div>
+
+          <p class="patron-lead">
+            San Lorenzo Mártir fue un diácono de la Iglesia de Roma en el siglo III y uno de los mártires más venerados del cristianismo universal. Su entrega valerosa al servicio del Evangelio es luz e inspiración para nuestra parroquia.
+          </p>
+
+          <!-- Bloque de frase célebre -->
+          <blockquote class="patron-famous-quote">
+            <div class="quote-icon" aria-hidden="true">&ldquo;</div>
+            <p>{parishData.patronDetails?.quote || "«Estos son los verdaderos tesoros de la Iglesia: los pobres, los enfermos y los marginados.»"}</p>
+          </blockquote>
+
+          <!-- Puntos claves de su historia -->
+          <div class="patron-facts-list">
+            <div class="patron-fact-item">
+              <div class="fact-bullet">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </div>
+              <div class="fact-content">
+                <strong>¿Quién era y su labor?</strong>
+                <p>Nació en Hispania (posiblemente en Huesca) y se trasladó a Roma, donde fue nombrado archidiácono por el Papa Sixto II. Tenía a su cargo la administración de los bienes eclesiales y la asistencia directa a pobres, viudas y huérfanos.</p>
+              </div>
+            </div>
+
+            <div class="patron-fact-item">
+              <div class="fact-bullet">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 14 14"/>
+                </svg>
+              </div>
+              <div class="fact-content">
+                <strong>El contexto histórico</strong>
+                <p>Bajo la persecución del emperador Valeriano, el Papa Sixto II fue ejecutado el 6 de agosto del año 258 d. C., dejando a Lorenzo al cuidado final de la comunidad cristiana.</p>
+              </div>
+            </div>
+
+            <div class="patron-fact-item">
+              <div class="fact-bullet">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <div class="fact-content">
+                <strong>Los verdaderos tesoros de la Iglesia</strong>
+                <p>Las autoridades le exigieron entregar los tesoros materiales. Lorenzo pidió unos días, repartió todo el dinero entre los desamparados y, al presentarse ante el prefecto romano con los enfermos y marginados, exclamó: <em>«¡Estos son los verdaderos tesoros de la Iglesia!»</em>.</p>
+              </div>
+            </div>
+
+            <div class="patron-fact-item">
+              <div class="fact-bullet">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M5 8h14"/>
+                </svg>
+              </div>
+              <div class="fact-content">
+                <strong>El martirio (10 de agosto de 258 d. C.)</strong>
+                <p>Por este supremo acto de fe y amor a los pobres, fue condenado a muerte y martirizado sobre una parrilla. Su inmolación encarna la fe que vence toda prueba de fuego.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Patronazgos -->
+          <div class="patronage-box">
+            <span class="patronage-label">Patrono protector de:</span>
+            <div class="patronage-tags">
+              {parishData.patronDetails?.patronage.map((item) => (
+                <span class="patronage-tag">{item}</span>
+              ))}
+            </div>
+            <span class="patronage-source">Fuente: {parishData.patronDetails?.sources || "Vatican News y ACI Prensa"}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Historia y Cronología -->
+  <section class="section section-white timeline-section">
+    <div class="container container-narrow">
+      <div class="section-header">
+        <span class="section-subtitle">Memoria Comunitaria</span>
+        <h2 class="section-title">Historia de Nuestra Parroquia</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+        <p class="section-description">
+          {parishData.history.summary}
+        </p>
+      </div>
+
+      <div class="timeline">
+        {parishData.history.milestones.map((item, idx) => (
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="timeline-year">{item.year}</span>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">{item.title}</h3>
+              <p class="timeline-text">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipo Pastoral y Sacerdotes -->
+  <section class="section section-warm clergy-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Pastores y Servidores</span>
+        <h2 class="section-title">Nuestros Sacerdotes y Diácono</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+        <p class="section-description">
+          Al servicio espiritual y pastoral de toda la comunidad con dedicación, escucha fraterna y alegría en el Señor.
+        </p>
+      </div>
+
+      <div class="clergy-grid">
+        {parishData.clergy.map((person) => (
+          <div class="clergy-card">
+            <div class="clergy-header">
+              <div class="clergy-avatar">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="clergy-info">
+                <span class="badge badge-gold">{person.role}</span>
+                <h3 class="clergy-name">{person.name}</h3>
+              </div>
+            </div>
+            <p class="clergy-bio">{person.bio}</p>
+            {person.quote && (
+              <blockquote class="clergy-quote">
+                {person.quote}
+              </blockquote>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="clergy-contact-callout">
+        <p>
+          ¿Deseas concertar una cita personal, bendición de hogar o acompañamiento espiritual con el párroco?
+        </p>
+        <a href="/contacto" class="btn btn-primary">
+          Contactar con Secretaría
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parish Life & Community Gallery (Fotos 6 a 14) -->
+  <section class="section section-white parish-gallery-section" id="galeria-parroquial">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Nuestra Comunidad en Acción</span>
+        <h2 class="section-title">Vida Parroquial en Imágenes</h2>
+        <div class="ornament-divider">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M5 8h14"/>
+          </svg>
+        </div>
+        <p class="section-description">
+          Momentos de oración, fraternidad, celebraciones litúrgicas y servicio activo en Santiago Oeste y Cienfuegos.
+        </p>
+      </div>
+
+      <div class="parish-photo-grid">
+        <div class="parish-photo-item parish-photo-item--wide">
+          <img src="/images/6.jpeg" alt="Celebración comunitaria en San Lorenzo" loading="lazy" />
+        </div>
+        <div class="parish-photo-item">
+          <img src="/images/7.jpeg" alt="Feligreses en la Santa Misa" loading="lazy" />
+        </div>
+        <div class="parish-photo-item">
+          <img src="/images/8.jpeg" alt="Altar y liturgia parroquial" loading="lazy" />
+        </div>
+        <div class="parish-photo-item">
+          <img src="/images/9.jpeg" alt="Comunidad unida en oración" loading="lazy" />
+        </div>
+        <div class="parish-photo-item parish-photo-item--wide">
+          <img src="/images/10.jpeg" alt="Acción pastoral y encuentro comunitario" loading="lazy" />
+        </div>
+        <div class="parish-photo-item">
+          <img src="/images/11.jpeg" alt="Vida pastoral en Cienfuegos" loading="lazy" />
+        </div>
+        <div class="parish-photo-item">
+          <img src="/images/12.jpeg" alt="Compromiso laical y fraternidad" loading="lazy" />
+        </div>
+        <div class="parish-photo-item">
+          <img src="/images/13.jpeg" alt="Encuentro de servidores del altar" loading="lazy" />
+        </div>
+        <div class="parish-photo-item">
+          <img src="/images/14.jpeg" alt="Actividades culturales y corales" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Banner */
+  .page-banner {
+    background: linear-gradient(135deg, var(--color-burgundy-dark), var(--color-burgundy));
+    color: #FFFFFF;
+    padding: 5rem 0 4.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .page-banner-inner {
+    max-width: 780px;
+  }
+
+  .page-banner-title {
+    color: #FFFFFF;
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    margin: 1rem 0 1.2rem;
+  }
+
+  .page-banner-sub {
+    color: #F2E9E3;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Mission & Vision */
+  .mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .mv-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mission-card {
+    border-top: 4px solid var(--color-burgundy);
+  }
+
+  .vision-card {
+    border-top: 4px solid var(--color-gold);
+  }
+
+  .mv-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-ivory-warm);
+    color: var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mv-card h3 {
+    font-size: 1.5rem;
+    color: var(--color-burgundy-dark);
+    margin: 0;
+  }
+
+  .mv-card p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* Pillars Grid */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pillar-card {
+    background: var(--color-ivory-warm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    transition: var(--transition-smooth);
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(197, 160, 89, 0.5);
+  }
+
+  .pillar-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: #FFFFFF;
+    color: var(--color-gold-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pillar-card h4 {
+    color: var(--color-burgundy-dark);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar-card p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* Patron Section: San Lorenzo Mártir */
+  .patron-hero-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.35fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Columna del retrato */
+  .patron-image-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 100px;
+  }
+
+  .patron-portrait-frame {
+    position: relative;
+    background: #ffffff;
+    border: 3px solid var(--color-gold);
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 16px 40px -10px rgba(114, 34, 55, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+
+  .patron-portrait-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(197, 160, 89, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .patron-portrait-img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  .patron-portrait-caption {
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .caption-saint {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-burgundy-dark);
+  }
+
+  .caption-details {
+    font-size: 0.8rem;
+    color: var(--color-gold-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .patron-feast-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--color-burgundy-dark), var(--color-burgundy));
+    color: #ffffff;
+    padding: 1.2rem 1.4rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px -6px rgba(114, 34, 55, 0.35);
+  }
+
+  .feast-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(197, 160, 89, 0.25);
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .patron-feast-badge-box strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #ffffff;
+    margin-bottom: 0.15rem;
+  }
+
+  .patron-feast-badge-box span {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.35;
+  }
+
+  /* Columna de info */
+  .patron-info-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .patron-title {
+    font-size: clamp(2rem, 3.5vw, 2.7rem);
+    color: var(--color-burgundy-dark);
+    margin: 0.75rem 0 1rem;
+    font-family: var(--font-serif);
+  }
+
+  .patron-lead {
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin-bottom: 1.5rem;
+  }
+
+  .patron-famous-quote {
+    position: relative;
+    background: linear-gradient(135deg, rgba(114, 34, 55, 0.05) 0%, rgba(197, 160, 89, 0.12) 100%);
+    border-left: 4px solid var(--color-burgundy);
+    border-radius: 0 12px 12px 0;
+    padding: 1.4rem 1.6rem 1.4rem 2.8rem;
+    margin: 0 0 2rem 0;
+  }
+
+  .patron-famous-quote .quote-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.4rem;
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--color-gold);
+    opacity: 0.55;
+    user-select: none;
+  }
+
+  .patron-famous-quote p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.08rem;
+    color: var(--color-burgundy-dark);
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  /* Facts list */
+  .patron-facts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    margin-bottom: 2rem;
+  }
+
+  .patron-fact-item {
+    display: flex;
+    gap: 1.2rem;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .patron-fact-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    border-color: rgba(197, 160, 89, 0.45);
+  }
+
+  .fact-bullet {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(114, 34, 55, 0.08);
+    color: var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .fact-content strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.35rem;
+  }
+
+  .fact-content p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Patronage tags box */
+  .patronage-box {
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px dashed var(--color-gold);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .patronage-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-burgundy-dark);
+  }
+
+  .patronage-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .patronage-tag {
+    background: #ffffff;
+    color: var(--color-burgundy-dark);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: 99px;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  }
+
+  .patronage-source {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 992px) {
+    .patron-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .patron-image-col {
+      position: static;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  .patron-card-info .btn {
+    margin-top: 1rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding: 2rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 80px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-burgundy), var(--color-gold));
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-marker {
+    width: 80px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1.25rem;
+  }
+
+  .timeline-year {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--color-burgundy);
+  }
+
+  .timeline-content {
+    background: var(--color-ivory-warm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    flex: 1;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .timeline-title {
+    font-size: 1.25rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-text {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Clergy Grid */
+  .clergy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .clergy-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .clergy-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .clergy-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-ivory-warm);
+    color: var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-border);
+  }
+
+  .clergy-name {
+    font-size: 1.25rem;
+    color: var(--color-burgundy-dark);
+    margin-top: 0.3rem;
+  }
+
+  .clergy-bio {
+    font-size: 0.94rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .clergy-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--color-burgundy);
+    border-left: 2px solid var(--color-gold);
+    padding-left: 0.85rem;
+    margin: 0.5rem 0 0;
+    line-height: 1.5;
+  }
+
+  .clergy-contact-callout {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .clergy-contact-callout p {
+    font-size: 1.05rem;
+    color: var(--color-text-main);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  @media (max-width: 992px) {
+    .mission-vision-grid {
+      grid-template-columns: 1fr;
+    }
+    .patron-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .timeline::before {
+      left: 24px;
+    }
+    .timeline-item {
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-left: 45px;
+    }
+    .timeline-marker {
+      width: auto;
+      justify-content: flex-start;
+      padding: 0;
+    }
+    .clergy-contact-callout {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  /* Parish Photo Grid */
+  .parish-gallery-section {
+    background-color: var(--color-ivory-warm);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .parish-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .parish-photo-item {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .parish-photo-item--wide {
+    grid-column: span 2;
+  }
+
+  .parish-photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .parish-photo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .parish-photo-item:hover img {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 900px) {
+    .parish-photo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .parish-photo-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 200px;
+    }
+    .parish-photo-item--wide {
+      grid-column: span 1;
+    }
+  }
+</style>

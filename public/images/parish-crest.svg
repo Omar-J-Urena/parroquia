@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="none">
+  <!-- Background circle with rich burgundy -->
+  <circle cx="60" cy="60" r="58" fill="#7A1D35"/>
+  <!-- Subtle gold outer ring -->
+  <circle cx="60" cy="60" r="56" fill="none" stroke="#C5A059" stroke-width="1.5"/>
+  <!-- Delicate inner decorative ring -->
+  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(197,160,89,0.4)" stroke-width="0.8" stroke-dasharray="3 4"/>
+
+  <!-- Elegant white cross with rounded ends and slight serif caps -->
+  <!-- Vertical bar -->
+  <rect x="53.5" y="18" width="13" height="84" rx="6.5" fill="white"/>
+  <!-- Horizontal bar -->
+  <rect x="22" y="48.5" width="76" height="13" rx="6.5" fill="white"/>
+
+  <!-- Subtle golden glow accent at center -->
+  <circle cx="60" cy="60" r="9" fill="none" stroke="rgba(212,175,55,0.45)" stroke-width="1.5"/>
+
+  <!-- Small gold diamond accent at cross center -->
+  <polygon points="60,54 64,60 60,66 56,60" fill="#D4AF37" opacity="0.6"/>
+</svg>

@@ -1,0 +1,1613 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { parishData } from '../data/parishData';
+
+const categories = [
+  { id: 'todos', label: 'Todos los Grupos' },
+  { id: 'jovenes', label: 'Jóvenes' },
+  { id: 'solidaridad', label: 'Solidaridad y Cáritas' },
+  { id: 'liturgia', label: 'Liturgia y Coro' },
+  { id: 'formacion', label: 'Catequesis y Formación' },
+  { id: 'familia', label: 'Familia y Matrimonios' },
+];
+---
+
+<Layout 
+  title={`Grupos Pastorales | ${parishData.name}`}
+  description={`Descubre las áreas pastorales de la ${parishData.name}: Pastoral Juvenil, Cáritas, Catequesis, Coro Litúrgico y Pastoral Familiar. Encuentra cómo sumarte.`}
+>
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container page-banner-inner">
+      <span class="badge badge-gold">Comunidad en Acción</span>
+      <h1 class="page-banner-title">Grupos Pastorales y Ministerios</h1>
+      <p class="page-banner-sub">
+        «Hay diversidad de carismas, pero el Espíritu es el mismo» (1 Cor 12, 4). Conoce los diferentes espacios donde compartir la fe, crecer y servir al prójimo.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter & Ministries Directory -->
+  <section class="section section-white">
+    <div class="container">
+      <!-- Filter Bar -->
+      <div class="filters-wrap" role="toolbar" aria-label="Filtrar grupos pastorales">
+        {categories.map((cat, idx) => (
+          <button 
+            class={`filter-btn ${idx === 0 ? 'active' : ''}`}
+            data-filter={cat.id}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Directory Grid -->
+      <div class="ministries-directory" id="ministriesList">
+        {parishData.ministries.map((ministry) => (
+          <article class="ministry-detail-card" data-category={ministry.category} id={ministry.id}>
+            <div class="detail-media">
+              <img 
+                src={ministry.image} 
+                alt={ministry.name} 
+                loading="lazy" 
+                class="detail-img"
+              />
+              <span class="badge badge-gold category-badge">
+                {ministry.categoryLabel}
+              </span>
+            </div>
+
+            <div class="detail-body">
+              <div class="detail-header">
+                <h2 class="detail-title">{ministry.name}</h2>
+                <p class="detail-short">{ministry.shortDesc}</p>
+              </div>
+
+              <div class="detail-description-block">
+                <p>{ministry.fullDesc}</p>
+              </div>
+
+              <div class="detail-activities-block">
+                <h4>Actividades Principales</h4>
+                <ul class="activities-list">
+                  {ministry.activities.map((act) => (
+                    <li>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>{act}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="detail-meta-grid">
+                <div class="meta-box">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <div>
+                    <strong>Horario y Día</strong>
+                    <span>{ministry.schedule}</span>
+                  </div>
+                </div>
+
+                <div class="meta-box">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <div>
+                    <strong>Lugar de Encuentro</strong>
+                    <span>{ministry.location}</span>
+                  </div>
+                </div>
+
+                <div class="meta-box">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                  </svg>
+                  <div>
+                    <strong>Destinatarios</strong>
+                    <span>{ministry.targetAudience}</span>
+                  </div>
+                </div>
+
+                <div class="meta-box">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <div>
+                    <strong>Coordinación</strong>
+                    <span>{ministry.contactPerson}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail-actions">
+                <a 
+                  href={`https://wa.me/${parishData.contact.whatsapp}?text=${encodeURIComponent(`Hola, quisiera más información para sumarme al grupo: ${ministry.name}`)}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn btn-whatsapp"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.199.534 1.286.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.353.101.173.45 1.742 1.97 2.08.188.043.332-.014.419-.101.087-.087.375-.434.476-.58.101-.145.202-.116.347-.058s.924.434 1.083.52c.159.087.26.13.299.202.043.072.043.419-.101.824z"/>
+                  </svg>
+                  <span>Consultar cómo sumarme</span>
+                </a>
+
+                <a href="/contacto#formulario-contacto" class="btn btn-secondary">
+                  Enviar consulta a secretaría
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       VOCES DE LA PASTORAL JUVENIL
+       ======================================== -->
+  <section class="section testimonials-section" id="voces-pastoral">
+    <div class="testimonials-decor-glow" aria-hidden="true"></div>
+    <!-- ========================================================
+         FLOATING PORTRAITS CANOPY (Full Bleed Arc with Edge Fading)
+         ======================================================== -->
+    <div class="canopy-showcase" aria-label="Jóvenes de la Pastoral Juvenil Nueva Vida">
+      <!-- Subtle vertical dashed guide lines matching reference image -->
+      <div class="canopy-grid-bg" aria-hidden="true">
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+        <span class="grid-dash-line"></span>
+      </div>
+
+      <!-- Animated swaying track with soft gradient edge masks -->
+      <div class="canopy-track-outer">
+        <div class="canopy-cards-row">
+          <!-- Col 1: Far left -->
+          <div class="canopy-col canopy-col-1">
+            <div class="canopy-card" title="Pastoral Juvenil en comunidad">
+              <img src="/images/4.jpeg" alt="Pastoral Juvenil en comunidad" loading="lazy" />
+            </div>
+            <div class="canopy-card" title="Winifer Ovalle">
+              <img src="/images/Winifer.jpeg" alt="Winifer Ovalle" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 2: Left -->
+          <div class="canopy-col canopy-col-2">
+            <div class="canopy-card" title="Pastoral Juvenil Nueva Vida">
+              <img src="/images/1.jpeg" alt="Pastoral Juvenil Nueva Vida" loading="lazy" />
+            </div>
+            <div class="canopy-card" title="Angel Junior">
+              <img src="/images/Angel Junior.jpeg" alt="Angel Junior" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 3: Left mid-outer -->
+          <div class="canopy-col canopy-col-3">
+            <div class="canopy-card" title="Ashley Garcia">
+              <img src="/images/Ashley.jpeg" alt="Ashley Garcia" loading="lazy" />
+            </div>
+            <div class="canopy-card" title="Encuentro de jóvenes">
+              <img src="/images/2.jpeg" alt="Encuentro de jóvenes" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 4: Left inner (tall) -->
+          <div class="canopy-col canopy-col-4">
+            <div class="canopy-card canopy-card--tall" title="Carlos David">
+              <img src="/images/Carlos.jpeg" alt="Carlos David" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 5: Center left-outer -->
+          <div class="canopy-col canopy-col-5">
+            <div class="canopy-card" title="Agustín">
+              <img src="/images/Agustin.jpeg" alt="Agustín" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 6: Center apex left -->
+          <div class="canopy-col canopy-col-6">
+            <div class="canopy-card" title="Pastoral Juvenil Grupo">
+              <img src="/images/3.jpeg" alt="Pastoral Juvenil Grupo" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 7: Center apex right -->
+          <div class="canopy-col canopy-col-7">
+            <div class="canopy-card" title="Elainne Garcia">
+              <img src="/images/Elainne.jpeg" alt="Elainne Garcia" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 8: Center right-outer -->
+          <div class="canopy-col canopy-col-8">
+            <div class="canopy-card" title="Keyha">
+              <img src="/images/Keyha.jpeg" alt="Keyha" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 9: Right inner (3D-Tilted) -->
+          <div class="canopy-col canopy-col-9">
+            <div class="canopy-card canopy-card--tilted" title="Angel">
+              <img src="/images/Angel.jpeg" alt="Angel" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 10: Right mid-outer -->
+          <div class="canopy-col canopy-col-10">
+            <div class="canopy-card" title="Hamlet Santos">
+              <img src="/images/Hamlet.jpeg" alt="Hamlet Santos" loading="lazy" />
+            </div>
+            <div class="canopy-card" title="Misión en Santiago Oeste">
+              <img src="/images/5.jpeg" alt="Misión en Santiago Oeste" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 11: Right -->
+          <div class="canopy-col canopy-col-11">
+            <div class="canopy-card" title="Ydalis Caba">
+              <img src="/images/Ydalis Caba.jpeg" alt="Ydalis Caba" loading="lazy" />
+            </div>
+            <div class="canopy-card" title="Angel N">
+              <img src="/images/Angel N.jpeg" alt="Angel N" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Col 12: Far right -->
+          <div class="canopy-col canopy-col-12">
+            <div class="canopy-card" title="Yolarfi">
+              <img src="/images/Yolarfi.jpeg" alt="Yolarfi" loading="lazy" />
+            </div>
+            <div class="canopy-card" title="Pastoral Juvenil">
+              <img src="/images/1.jpeg" alt="Pastoral Juvenil" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center content nestled under the rainbow arch -->
+      <div class="canopy-center-header">
+        <div class="canopy-badge">
+          <span class="badge-pulse-dot"></span>
+          <span>Testimonios · Pastoral Juvenil «Nueva Vida»</span>
+        </div>
+
+        <h2 class="canopy-title">
+          Vidas transformadas por la fe<br/>
+          <span class="canopy-title-highlight">unidos en Cristo y en comunidad</span>
+        </h2>
+
+        <p class="canopy-subtitle">
+          Jóvenes de Santiago Oeste comparten cómo la Pastoral Juvenil de la Parroquia San Lorenzo ha llenado sus vidas de paz, amor fraternal y un verdadero propósito.
+        </p>
+      </div>
+    </div><!-- /canopy-showcase -->
+
+    <div class="container relative-z">
+
+      <!-- Divider label -->
+      <div class="testimonials-intro">
+        <div class="intro-line"></div>
+        <span class="intro-label">Sus palabras</span>
+        <div class="intro-line"></div>
+      </div>
+
+      <!-- Testimonial cards grid -->
+      <div class="testimonials-grid">
+
+        <!-- 1. Angel Junior -->
+        <article class="testimonial-card featured-pill">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Amor y Acompañamiento</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Angel Junior.jpeg" alt="Foto de Angel Junior" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «Gracias por ser el puente de amor de Dios en nuestras vidas... Cuando el camino se ponía difícil, Dios ya había puesto sus manos entre nosotros.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Angel Junior</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Winifer Ovalle -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Crecimiento Humano</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Winifer.jpeg" alt="Foto de Winifer Ovalle" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «Me ha enseñado a ser mejor persona y a ayudar a los demás con mayor firmeza y comprensión.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Winifer Ovalle</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Angel -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Transformación</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Angel.jpeg" alt="Foto de Angel" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «Marcó un cambio notable e integral en mi vida personal.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Angel</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Carlos David -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Paz Interior</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Carlos.jpeg" alt="Foto de Carlos David" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «La pastoral me ha regalado una paz profunda y verdadera.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Carlos David</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Elainne Garcia -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Gratitud</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Elainne.jpeg" alt="Foto de Elainne Garcia" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «Gratificante: así ha sido el modo en que la Pastoral transformó mi vida por completo.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Elainne Garcia</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Ashley Garcia -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Comunidad y Fe</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Ashley.jpeg" alt="Foto de Ashley Garcia" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «Cambió mi forma de ver el mundo y me rodeó de personas de las que aprendo cada día mientras nos acercamos a Cristo.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Ashley Garcia</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. Hamlet Santos -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Amor y Paz</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Hamlet.jpeg" alt="Foto de Hamlet Santos" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «En una sola frase: más amor y más paz en mi corazón.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Hamlet Santos</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. Agustín -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Encuentro con Dios</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Agustin.jpeg" alt="Foto de Agustín" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «La pastoral me acercó a Dios de una manera que no esperaba, y encontré en ella mi lugar en la comunidad.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Agustín</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9. Angel N -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Propósito de Vida</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Angel N.jpeg" alt="Foto de Angel N" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «Aquí descubrí un propósito más grande que yo mismo: servir a los demás con el corazón puesto en Cristo.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Angel N</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10. Keyha -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Alegría del Evangelio</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Keyha.jpeg" alt="Foto de Keyha" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «La pastoral me enseñó a sonreírle al mundo desde la fe; cada encuentro es una razón para agradecer.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Keyha</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 11. Ydalis Caba -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Esperanza Renovada</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Ydalis Caba.jpeg" alt="Foto de Ydalis Caba" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «La Pastoral Juvenil renovó mi esperanza y me dio la certeza de que nunca caminamos solos.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Ydalis Caba</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 12. Yolarfi -->
+        <article class="testimonial-card">
+          <div class="testimonial-card-top">
+            <span class="testimonial-chip">Servicio y Amor</span>
+          </div>
+          <div class="testimonial-photo-wrap">
+            <img src="/images/Yolarfi.jpeg" alt="Foto de Yolarfi" class="testimonial-photo" loading="lazy" />
+          </div>
+          <div class="testimonial-body">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="testimonial-quote">
+              «Aprendí que servir es la forma más bella de amar, y la pastoral me puso en ese camino para siempre.»
+            </blockquote>
+            <div class="testimonial-author">
+              <h3 class="testimonial-name">Yolarfi</h3>
+              <span class="testimonial-tag">Pastoral Juvenil</span>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /testimonials-grid -->
+
+      <!-- ========================================================
+           PASTORAL JUVENIL «NUEVA VIDA» - MOMENTOS (Fotos 1 a 5)
+           ======================================================== -->
+      <div class="pastoral-moments-showcase" aria-label="Momentos de Pastoral Juvenil Nueva Vida">
+        <div class="moments-header">
+          <span class="moments-pill">Vida en Fraternidad</span>
+          <h3 class="moments-title">Momentos de la Pastoral Juvenil «Nueva Vida»</h3>
+          <p class="moments-sub">
+            Encuentros, retiros y dinámicas comunitarias donde compartimos la alegría del Evangelio en la Parroquia San Lorenzo.
+          </p>
+        </div>
+
+        <div class="moments-grid">
+          <div class="moment-card moment-card--hero">
+            <img src="/images/1.jpeg" alt="Pastoral Juvenil Nueva Vida compartiendo en comunidad" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-badge">Encuentro Comunitario</span>
+              <span class="moment-caption">Caminando juntos en la fe y la amistad</span>
+            </div>
+          </div>
+          <div class="moment-card">
+            <img src="/images/2.jpeg" alt="Jóvenes de San Lorenzo reunidos en alegría" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Unidad y oración en Cristo</span>
+            </div>
+          </div>
+          <div class="moment-card">
+            <img src="/images/3.jpeg" alt="Reflexión bíblica y dinámicas juveniles" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Dinámicas y fraternidad viva</span>
+            </div>
+          </div>
+          <div class="moment-card">
+            <img src="/images/4.jpeg" alt="Encuentro en el salón parroquial" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Formación y compromiso</span>
+            </div>
+          </div>
+          <div class="moment-card">
+            <img src="/images/5.jpeg" alt="Misión juvenil en Santiago Oeste" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Sembrando esperanza en Cienfuegos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Card / CTA -->
+      <div class="testimonials-cta-box">
+        <div class="cta-glow-circle"></div>
+        <div class="cta-content">
+          <span class="cta-mini-label">¿Buscas un espacio donde crecer?</span>
+          <h3 class="cta-heading">¡La Pastoral Juvenil tiene un lugar para ti!</h3>
+          <p class="cta-subtext">Ven a nuestros encuentros los sábados, comparte con jóvenes de tu edad y experimenta la alegría del Evangelio.</p>
+          <div class="cta-actions">
+            <a href={`https://wa.me/${parishData.contact.whatsapp}?text=${encodeURIComponent('Hola, quisiera información para unirme a la Pastoral Juvenil de la Parroquia San Lorenzo.')}`} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.199.534 1.286.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.353.101.173.45 1.742 1.97 2.08.188.043.332-.014.419-.101.087-.087.375-.434.476-.58.101-.145.202-.116.347-.058s.924.434 1.083.52c.159.087.26.13.299.202.043.072.043.419-.101.824z"/>
+              </svg>
+              Escríbenos por WhatsApp
+            </a>
+            <a href="/contacto" class="btn btn-secondary btn-lg">
+              Ver horarios y ubicación
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+
+<style>
+  /* Banner */
+  .page-banner {
+    background: linear-gradient(135deg, var(--color-burgundy-dark), var(--color-burgundy));
+    color: #FFFFFF;
+    padding: 5rem 0 4.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .page-banner-inner {
+    max-width: 780px;
+  }
+
+  .page-banner-title {
+    color: #FFFFFF;
+    font-size: clamp(2.3rem, 4vw, 3.4rem);
+    margin: 1rem 0 1.2rem;
+  }
+
+  .page-banner-sub {
+    color: #F2E9E3;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Filters */
+  .filters-wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .filter-btn {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    padding: 0.65rem 1.35rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-burgundy);
+    color: var(--color-burgundy);
+  }
+
+  .filter-btn.active {
+    background: var(--color-burgundy);
+    color: #FFFFFF;
+    border-color: var(--color-burgundy);
+    box-shadow: 0 4px 12px var(--color-burgundy-glow);
+  }
+
+  /* Ministries Directory */
+  .ministries-directory {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .ministry-detail-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    transition: var(--transition-smooth);
+  }
+
+  .ministry-detail-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(197, 160, 89, 0.4);
+  }
+
+  .detail-media {
+    position: relative;
+    height: 100%;
+    min-height: 340px;
+  }
+
+  .detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .category-badge {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+  }
+
+  .detail-body {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .detail-title {
+    font-size: 1.65rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .detail-short {
+    font-size: 1.05rem;
+    color: var(--color-burgundy);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .detail-description-block p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .detail-activities-block h4 {
+    font-size: 1rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.6rem;
+  }
+
+  .activities-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .activities-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+  }
+
+  .activities-list svg {
+    color: var(--color-gold-dark);
+    flex-shrink: 0;
+  }
+
+  .detail-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    background: var(--color-ivory-warm);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .meta-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .meta-box svg {
+    color: var(--color-burgundy);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .meta-box strong {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+  }
+
+  .meta-box span {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+  }
+
+  .detail-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  /* Join Guide */
+  .join-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .join-step {
+    display: flex;
+    gap: 1.5rem;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .join-step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background: var(--color-gold);
+    color: #2D200B;
+    font-weight: 700;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .join-step-info h4 {
+    font-size: 1.15rem;
+    color: var(--color-burgundy-dark);
+    margin-bottom: 0.35rem;
+  }
+
+  .join-step-info p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .join-cta-wrap {
+    text-align: center;
+  }
+
+  @media (max-width: 992px) {
+    .ministry-detail-card {
+      grid-template-columns: 1fr;
+    }
+    .detail-media {
+      height: 280px;
+      min-height: auto;
+    }
+    .activities-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .detail-body {
+      padding: 1.5rem;
+    }
+    .detail-meta-grid {
+      grid-template-columns: 1fr;
+    }
+    .detail-actions {
+      flex-direction: column;
+    }
+    .detail-actions .btn {
+      width: 100%;
+    }
+  }
+
+  /* ========================================================
+     FLOATING PORTRAITS CANOPY (Reference Design)
+     ======================================================== */
+  .canopy-showcase {
+    position: relative;
+    padding: 2.5rem 0 3.5rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  /* Subtle vertical dashed lines from user reference image */
+  .canopy-grid-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+    padding: 0 1.5rem;
+    opacity: 0.55;
+    z-index: 1;
+  }
+
+  .grid-dash-line {
+    width: 1px;
+    height: 100%;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(197, 160, 89, 0.4) 0px,
+      rgba(197, 160, 89, 0.4) 6px,
+      transparent 6px,
+      transparent 13px
+    );
+  }
+
+  /* Full-bleed track with gentle edge fading so it NEVER cuts off abruptly */
+  .canopy-track-outer {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem 0 3rem;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 3%,
+      black 8%,
+      black 92%,
+      rgba(0, 0, 0, 0.4) 97%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.4) 3%,
+      black 8%,
+      black 92%,
+      rgba(0, 0, 0, 0.4) 97%,
+      transparent 100%
+    );
+  }
+
+  /* Horizontal arch row of floating portrait cards with continuous side-to-side drift */
+  .canopy-cards-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.25rem;
+    width: max-content;
+    margin: 0 auto;
+    animation: canopySway 16s ease-in-out infinite alternate;
+    will-change: transform;
+    padding: 0 2rem;
+  }
+
+  .canopy-showcase:hover .canopy-cards-row {
+    animation-play-state: paused;
+  }
+
+  @keyframes canopySway {
+    0% {
+      transform: translateX(85px);
+    }
+    100% {
+      transform: translateX(-85px);
+    }
+  }
+
+  .canopy-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    flex-shrink: 0;
+    transform: translateY(var(--col-y, 0px));
+    transition: transform 0.4s ease;
+  }
+
+  /* 12-Column rainbow arch parabola curve */
+  .canopy-col-1 { --col-y: 44px; }
+  .canopy-col-2 { --col-y: 26px; }
+  .canopy-col-3 { --col-y: 10px; }
+  .canopy-col-4 { --col-y: -4px; }
+  .canopy-col-5 { --col-y: -18px; }
+  .canopy-col-6 { --col-y: -28px; }
+  .canopy-col-7 { --col-y: -28px; }
+  .canopy-col-8 { --col-y: -16px; }
+  .canopy-col-9 { --col-y: -2px; }
+  .canopy-col-10 { --col-y: 12px; }
+  .canopy-col-11 { --col-y: 28px; }
+  .canopy-col-12 { --col-y: 46px; }
+
+  .canopy-card {
+    width: 112px;
+    height: 145px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 12px 28px -4px rgba(114, 34, 55, 0.12), 0 3px 10px rgba(0, 0, 0, 0.04);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .canopy-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .canopy-card:hover {
+    transform: translateY(-8px) scale(1.06);
+    box-shadow: 0 22px 42px -6px rgba(114, 34, 55, 0.22), 0 6px 16px rgba(0, 0, 0, 0.08);
+    border-color: var(--color-gold);
+    z-index: 10;
+  }
+
+  .canopy-card:hover img {
+    transform: scale(1.08);
+  }
+
+  /* Variations from reference: tall and 3D tilted card */
+  .canopy-card--tall {
+    height: 180px;
+  }
+
+  .canopy-card--tilted {
+    height: 170px;
+    transform: perspective(600px) rotateY(-9deg) rotateZ(3deg);
+    box-shadow: -8px 18px 36px rgba(114, 34, 55, 0.18), 0 4px 12px rgba(0,0,0,0.06);
+    border-color: rgba(197, 160, 89, 0.4);
+  }
+
+  .canopy-card--tilted:hover {
+    transform: perspective(600px) rotateY(-2deg) rotateZ(0deg) scale(1.06) translateY(-8px);
+  }
+
+  /* Center Header integrated right below and inside the rainbow arch curve */
+  .canopy-center-header {
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    max-width: 800px;
+    margin: -5.2rem auto 1.5rem; /* Pulled up into the rainbow arch hollow */
+    padding: 0 1.5rem;
+    pointer-events: none;
+  }
+
+  .canopy-center-header * {
+    pointer-events: auto;
+  }
+
+  .canopy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.45rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-radius: 99px;
+    box-shadow: 0 6px 18px rgba(114, 34, 55, 0.08), 0 2px 6px rgba(0,0,0,0.03);
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--color-burgundy);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.15rem;
+  }
+
+  .badge-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.3);
+  }
+
+  .canopy-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    color: var(--color-burgundy-dark);
+    line-height: 1.2;
+    margin: 0 0 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .canopy-title-highlight {
+    color: var(--color-burgundy);
+    background: linear-gradient(135deg, var(--color-burgundy-dark), var(--color-burgundy));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .canopy-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 650px;
+  }
+
+  @media (max-width: 1200px) {
+    .canopy-center-header {
+      margin: -3.8rem auto 1.5rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .canopy-center-header {
+      margin: -2rem auto 1.5rem;
+    }
+    @keyframes canopySway {
+      0% {
+        transform: translateX(110px);
+      }
+      100% {
+        transform: translateX(-110px);
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .canopy-center-header {
+      margin: 0.5rem auto 1rem;
+    }
+    .canopy-cards-row {
+      animation-duration: 22s;
+    }
+    @keyframes canopySway {
+      0% {
+        transform: translateX(140px);
+      }
+      100% {
+        transform: translateX(-140px);
+      }
+    }
+  }
+
+  /* Divider before testimonial cards */
+  .testimonials-intro {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 2.5rem 0 1.5rem;
+  }
+
+  .intro-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.4), transparent);
+  }
+
+  .intro-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-gold-dark);
+    white-space: nowrap;
+    background: rgba(197, 160, 89, 0.08);
+    padding: 0.3rem 0.9rem;
+    border-radius: 99px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+  }
+
+  /* ========================================
+     TESTIMONIALS (VOCES DE LA PASTORAL)
+     ======================================== */
+  .testimonials-section {
+    position: relative;
+    background: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, rgba(250, 247, 242, 0.4) 30%, #faf7f2 100%);
+    padding: 5.5rem 0 6.5rem;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+    overflow: hidden;
+  }
+
+  .testimonials-decor-glow {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 650px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(114, 34, 55, 0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .relative-z {
+    position: relative;
+    z-index: 2;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 2.2rem;
+    margin-top: 2rem;
+  }
+
+  .testimonial-card {
+    background: #ffffff;
+    border-radius: 22px;
+    border: 1px solid rgba(114, 34, 55, 0.08);
+    box-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.05), 0 3px 8px rgba(0, 0, 0, 0.02);
+    padding: 2.2rem 1.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(197, 160, 89, 0.45);
+    box-shadow: 0 22px 46px -8px rgba(114, 34, 55, 0.14), 0 6px 14px rgba(0, 0, 0, 0.04);
+  }
+
+  .testimonial-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Tag chip */
+  .testimonial-card-top {
+    margin-bottom: 1.3rem;
+  }
+
+  .testimonial-chip {
+    display: inline-block;
+    padding: 0.28rem 0.9rem;
+    background: rgba(197, 160, 89, 0.12);
+    color: var(--color-gold-dark);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 99px;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  /* Photo - ENLARGED, PROMINENT AND CLEAR */
+  .testimonial-photo-wrap {
+    margin-bottom: 1.4rem;
+    position: relative;
+  }
+
+  .testimonial-photo {
+    width: 175px;
+    height: 215px;
+    border-radius: 22px;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 3px solid rgba(197, 160, 89, 0.45);
+    box-shadow: 0 10px 24px rgba(114, 34, 55, 0.12), 0 3px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
+    background: #f3efe9;
+  }
+
+  .testimonial-card:hover .testimonial-photo {
+    border-color: var(--color-burgundy);
+    box-shadow: 0 16px 36px rgba(114, 34, 55, 0.22);
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  /* Body & Quote */
+  .testimonial-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    width: 100%;
+  }
+
+  .quote-mark {
+    font-family: var(--font-serif);
+    font-size: 3.2rem;
+    line-height: 1;
+    color: var(--color-gold);
+    opacity: 0.35;
+    margin-bottom: -1rem;
+    user-select: none;
+  }
+
+  .testimonial-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-text-main);
+    font-size: 1.03rem;
+    line-height: 1.65;
+    margin: 0 0 1.6rem 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ========================================================
+     PASTORAL JUVENIL MOMENTOS (Fotos 1 a 5)
+     ======================================================== */
+  .pastoral-moments-showcase {
+    margin-top: 5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  .moments-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .moments-pill {
+    display: inline-block;
+    padding: 0.3rem 0.95rem;
+    background: rgba(197, 160, 89, 0.12);
+    color: var(--color-gold-dark);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 99px;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    margin-bottom: 0.75rem;
+  }
+
+  .moments-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    color: var(--color-burgundy-dark);
+    margin: 0 0 0.75rem;
+  }
+
+  .moments-sub {
+    font-size: 0.98rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .moments-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    gap: 1.25rem;
+  }
+
+  .moment-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .moment-card--hero {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .moment-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .moment-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.4rem;
+    color: #ffffff;
+    opacity: 0.95;
+    transition: opacity 0.3s ease;
+  }
+
+  .moment-badge {
+    align-self: flex-start;
+    padding: 0.2rem 0.65rem;
+    background: var(--color-gold);
+    color: #1a1a1a;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+
+  .moment-caption {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+
+  .moment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(114, 34, 55, 0.2);
+  }
+
+  .moment-card:hover img {
+    transform: scale(1.06);
+  }
+
+  @media (max-width: 900px) {
+    .canopy-cards-row {
+      justify-content: flex-start;
+    }
+    .moments-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .moment-card--hero {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .moments-grid {
+      grid-template-columns: 1fr;
+    }
+    .moment-card--hero {
+      grid-column: span 1;
+    }
+    .testimonial-photo {
+      width: 155px;
+      height: 195px;
+    }
+  }
+
+  .testimonial-author {
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    padding-top: 0.9rem;
+    width: 80%;
+  }
+
+  .testimonial-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-burgundy-dark);
+    margin: 0 0 0.15rem 0;
+    letter-spacing: -0.01em;
+  }
+
+  .testimonial-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gold-dark);
+  }
+
+  /* Testimonials CTA Box */
+  .testimonials-cta-box {
+    margin-top: 4.5rem;
+    position: relative;
+    background: linear-gradient(135deg, var(--color-burgundy-dark) 0%, var(--color-burgundy) 100%);
+    border-radius: 20px;
+    padding: 3.5rem 2.5rem;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 16px 40px -10px rgba(114, 34, 55, 0.35);
+    overflow: hidden;
+  }
+
+  .cta-glow-circle {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .cta-mini-label {
+    display: inline-block;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-heading {
+    color: #ffffff;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 1rem 0;
+    font-family: var(--font-serif);
+  }
+
+  .cta-subtext {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-actions .btn-primary {
+    background: var(--color-gold);
+    color: #1a1a1a;
+    border-color: var(--color-gold);
+    font-weight: 700;
+  }
+
+  .cta-actions .btn-primary:hover {
+    background: #deb868;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .cta-actions .btn-secondary {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
+
+  .cta-actions .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.ministry-detail-card');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update active button
+      filterButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Filter cards
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        if (filter === 'todos' || cat === filter) {
+          (card as HTMLElement).style.display = 'grid';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
