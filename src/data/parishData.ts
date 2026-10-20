@@ -363,16 +363,17 @@ export const parishData: ParishConfig = {
       fullDesc: "Un grupo vibrante donde los jóvenes comparten sus inquietudes, profundizan en el Evangelio, realizan jornadas comunitarias, campamentos y dinámicas de servicio en favor de sus propios barrios.",
       targetAudience: "Jóvenes y adolescentes (14 a 25 años)",
       activities: [
-        "Encuentros semanales de debate bíblico, dinámicas y oración",
-        "Misión solidaria y voluntariado en sectores populares",
-        "Retiros espirituales y participación arquidiocesana",
-        "Encuentros deportivos, artísticos y recreativos"
+        "Campamento anual «Enciéndete» y retiros espirituales",
+        "Jornadas de Senderismo ecológico y vida en la naturaleza",
+        "Grupo de Baile Folclórico y expresiones de arte popular",
+        "Fiesta comunitaria pro-fondos «Enciende Tus Pasos»",
+        "Encuentros semanales de debate bíblico, oración y liderazgo"
       ],
       schedule: "Sábados de 4:30 pm a 6:15 pm",
       location: "Salón Parroquial San Lorenzo",
       contactPerson: "Coordinación Juvenil Parroquial",
       contactEmail: "jovenes@parroquiasanlorenzo.org",
-      image: "/images/1.jpeg",
+      image: "/images/35.jpeg",
       icon: "sparkles"
     },
     {
@@ -440,6 +441,87 @@ export const parishData: ParishConfig = {
     }
   ],
   experiences: [
+    {
+      id: "senderismo-juvenil-2026",
+      title: "Senderismo Juvenil 2026",
+      date: "2026",
+      category: "Pastoral Juvenil",
+      description: "Aventura, fraternidad y contemplación de la naturaleza durante nuestra jornada de senderismo ecológico 2026. Los jóvenes recorrieron senderos montañosos, fortaleciendo el espíritu de equipo y el agradecimiento por la creación de Dios.",
+      image: "/images/61.jpeg",
+      gallery: [
+        "/images/53.jpeg",
+        "/images/54.jpeg",
+        "/images/55.jpeg",
+        "/images/56.jpeg",
+        "/images/57.jpeg",
+        "/images/58.jpeg",
+        "/images/59.jpeg",
+        "/images/60.jpeg",
+        "/images/61.jpeg"
+      ],
+      relatedMinistry: "Pastoral Juvenil «Nueva Vida»"
+    },
+    {
+      id: "campamento-enciendete-2025",
+      title: "Campamento Enciéndete 2025",
+      date: "Verano 2025",
+      category: "Pastoral Juvenil",
+      description: "Nuestra experiencia cumbre de fe, liderazgo y comunión fraterna. Días llenos de procesión y adoración eucarística, testimonios, dinámicas en la naturaleza, velada campestre y entrega de reconocimientos al compromiso de nuestros jóvenes.",
+      image: "/images/35.jpeg",
+      gallery: [
+        "/images/25.jpeg",
+        "/images/26.jpeg",
+        "/images/27.jpeg",
+        "/images/28.jpeg",
+        "/images/29.jpeg",
+        "/images/30.jpeg",
+        "/images/31.jpeg",
+        "/images/32.jpeg",
+        "/images/33.jpeg",
+        "/images/34.jpeg",
+        "/images/35.jpeg",
+        "/images/36.jpeg",
+        "/images/37.jpeg",
+        "/images/38.jpeg",
+        "/images/39.jpeg"
+      ],
+      relatedMinistry: "Pastoral Juvenil «Nueva Vida»"
+    },
+    {
+      id: "fiesta-enciende-tus-pasos",
+      title: "Fiesta «Enciende Tus Pasos»",
+      date: "2025",
+      category: "Pastoral Juvenil",
+      description: "Jornada festiva y de integración comunitaria organizada por la Pastoral Juvenil como evento pro-fondo campamento. Una velada de sana diversión con música, baile, fraternidad y alegría compartida en el salón parroquial.",
+      image: "/images/44.jpeg",
+      gallery: [
+        "/images/44.jpeg",
+        "/images/45.jpeg",
+        "/images/46.jpeg",
+        "/images/47.jpeg",
+        "/images/48.jpeg",
+        "/images/49.jpeg",
+        "/images/50.jpeg",
+        "/images/51.jpeg",
+        "/images/52.jpeg"
+      ],
+      relatedMinistry: "Pastoral Juvenil «Nueva Vida»"
+    },
+    {
+      id: "baile-folclorico",
+      title: "Baile Folclórico de la Pastoral Juvenil",
+      date: "2025",
+      category: "Pastoral Juvenil",
+      description: "Homenaje a nuestra identidad y folclore dominicano. Los jóvenes de la pastoral vistieron trajes típicos tricolor para deleitar a la comunidad con danzas autóctonas llenas de colorido, ritmo y orgullo de nuestras raíces.",
+      image: "/images/40.jpeg",
+      gallery: [
+        "/images/40.jpeg",
+        "/images/41.jpeg",
+        "/images/42.jpeg",
+        "/images/43.jpeg"
+      ],
+      relatedMinistry: "Pastoral Juvenil «Nueva Vida»"
+    },
     {
       id: "fiesta-patronal-san-lorenzo",
       title: "Solemne Fiesta Patronal en Honor a San Lorenzo",

@@ -36,7 +36,7 @@ const { experience } = Astro.props;
     <p class="exp-desc">{experience.description}</p>
     
     <div class="exp-footer">
-      <a href="/experiencias" class="exp-link">
+      <a href={`/experiencias#${experience.id}`} class="exp-link">
         <span>Ver álbum fotográfico</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="9 18 15 12 9 6"></polyline>

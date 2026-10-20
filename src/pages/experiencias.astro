@@ -78,14 +78,17 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
 
               {exp.gallery && exp.gallery.length > 1 && (
                 <div class="exp-thumbs">
-                  <span class="thumbs-label">Más fotos de este evento:</span>
+                  <div class="thumbs-header-row">
+                    <span class="thumbs-label">Álbum fotográfico ({exp.gallery.length} fotos)</span>
+                    <span class="thumbs-hint">Toca para ampliar</span>
+                  </div>
                   <div class="thumbs-row">
                     {exp.gallery.map((thumb, tIdx) => (
                       <button 
                         class="thumb-btn" 
                         data-img={thumb} 
-                        data-caption={`${exp.title} - Foto ${tIdx + 1}`}
-                        aria-label={`Ver foto ${tIdx + 1}`}
+                        data-caption={`${exp.title} - Foto ${tIdx + 1} de ${exp.gallery.length}`}
+                        aria-label={`Ver foto ${tIdx + 1} de ${exp.title}`}
                       >
                         <img src={thumb} alt="" loading="lazy" />
                       </button>
@@ -164,10 +167,26 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
 
   <!-- Lightbox Modal Component -->
   <div id="lightboxModal" class="lightbox-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visor de imagen">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
     <div class="lightbox-content">
       <button id="closeLightbox" class="lightbox-close" aria-label="Cerrar visor">✕</button>
-      <img id="lightboxImg" src="" alt="" class="lightbox-full-img" />
-      <p id="lightboxCaption" class="lightbox-caption"></p>
+      
+      <button id="prevLightbox" class="lightbox-arrow lightbox-arrow-prev" aria-label="Foto anterior" title="Foto anterior (←)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+
+      <div class="lightbox-img-container">
+        <img id="lightboxImg" src="" alt="" class="lightbox-full-img" />
+      </div>
+
+      <button id="nextLightbox" class="lightbox-arrow lightbox-arrow-next" aria-label="Siguiente foto" title="Siguiente foto (→)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+
+      <div class="lightbox-bar">
+        <p id="lightboxCaption" class="lightbox-caption"></p>
+        <span id="lightboxCounter" class="lightbox-counter"></span>
+      </div>
     </div>
   </div>
 </Layout>
@@ -355,18 +374,53 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
     border-top: 1px solid var(--color-border-subtle);
   }
 
+  .thumbs-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+  }
+
   .thumbs-label {
     display: block;
     font-size: 0.78rem;
-    color: var(--color-text-light);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    color: var(--color-burgundy-dark);
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .thumbs-hint {
+    font-size: 0.72rem;
+    color: var(--color-burgundy);
+    font-weight: 600;
   }
 
   .thumbs-row {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    max-height: 145px;
+    overflow-y: auto;
+    padding: 3px;
+  }
+
+  .thumbs-row::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .thumbs-row::-webkit-scrollbar-track {
+    background: #f4efe9;
+    border-radius: var(--radius-full);
+  }
+
+  .thumbs-row::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+  }
+
+  .thumbs-row::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
   }
 
   .thumb-btn {
@@ -503,9 +557,7 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
   .lightbox-modal {
     position: fixed;
     inset: 0;
-    background: rgba(18, 14, 16, 0.92);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
+    z-index: 2000;
     display: none;
     align-items: center;
     justify-content: center;
@@ -516,9 +568,18 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
     display: flex;
   }
 
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 10, 12, 0.93);
+    backdrop-filter: blur(10px);
+  }
+
   .lightbox-content {
     position: relative;
-    max-width: 960px;
+    z-index: 2;
+    max-width: 1000px;
+    width: 100%;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -527,30 +588,110 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
 
   .lightbox-close {
     position: absolute;
-    top: -45px;
+    top: -46px;
     right: 0;
-    background: none;
+    background: rgba(255, 255, 255, 0.15);
     border: none;
     color: #FFFFFF;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+  }
+
+  .lightbox-close:hover {
+    background: var(--color-burgundy);
+    transform: scale(1.08);
+  }
+
+  .lightbox-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 75vh;
+    width: 100%;
   }
 
   .lightbox-full-img {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 75vh;
     border-radius: var(--radius-md);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
     object-fit: contain;
+    transition: opacity 0.2s ease;
+  }
+
+  .lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: var(--transition-smooth);
+    z-index: 5;
+  }
+
+  .lightbox-arrow:hover {
+    background: var(--color-gold);
+    color: var(--color-burgundy-dark);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .lightbox-arrow-prev {
+    left: -24px;
+  }
+
+  .lightbox-arrow-next {
+    right: -24px;
+  }
+
+  @media (max-width: 768px) {
+    .lightbox-arrow-prev {
+      left: 6px;
+    }
+    .lightbox-arrow-next {
+      right: 6px;
+    }
+    .lightbox-modal {
+      padding: 1rem;
+    }
+  }
+
+  .lightbox-bar {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: center;
   }
 
   .lightbox-caption {
     color: #FFFFFF;
-    margin-top: 1rem;
     font-size: 1.05rem;
     font-family: var(--font-serif);
-    text-align: center;
+    margin: 0;
+  }
+
+  .lightbox-counter {
+    color: var(--color-gold-light);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
   }
 
   @media (max-width: 768px) {
@@ -589,16 +730,45 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
   const modal = document.getElementById('lightboxModal');
   const modalImg = document.getElementById('lightboxImg') as HTMLImageElement;
   const modalCaption = document.getElementById('lightboxCaption');
+  const modalCounter = document.getElementById('lightboxCounter');
   const closeBtn = document.getElementById('closeLightbox');
+  const backdrop = document.getElementById('lightboxBackdrop');
+  const prevBtn = document.getElementById('prevLightbox');
+  const nextBtn = document.getElementById('nextLightbox');
 
-  const openLightbox = (src: string, caption: string) => {
-    if (modal && modalImg && modalCaption) {
-      modalImg.src = src;
-      modalCaption.textContent = caption;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+  interface GalleryItem {
+    src: string;
+    caption: string;
+  }
+
+  let currentAlbum: GalleryItem[] = [];
+  let currentIndex = 0;
+
+  const updateModalContent = () => {
+    if (!modalImg || currentAlbum.length === 0) return;
+    const item = currentAlbum[currentIndex];
+    modalImg.src = item.src;
+    if (modalCaption) modalCaption.textContent = item.caption;
+    if (modalCounter) {
+      modalCounter.textContent = currentAlbum.length > 1 
+        ? `Foto ${currentIndex + 1} de ${currentAlbum.length}`
+        : '';
     }
+    if (prevBtn && nextBtn) {
+      const showArrows = currentAlbum.length > 1;
+      prevBtn.style.display = showArrows ? 'flex' : 'none';
+      nextBtn.style.display = showArrows ? 'flex' : 'none';
+    }
+  };
+
+  const openLightbox = (album: GalleryItem[], index: number = 0) => {
+    if (!modal || album.length === 0) return;
+    currentAlbum = album;
+    currentIndex = Math.max(0, Math.min(index, album.length - 1));
+    updateModalContent();
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
@@ -606,35 +776,86 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      currentAlbum = [];
+      currentIndex = 0;
     }
   };
 
+  const showNext = () => {
+    if (currentAlbum.length <= 1) return;
+    currentIndex = (currentIndex + 1) % currentAlbum.length;
+    updateModalContent();
+  };
+
+  const showPrev = () => {
+    if (currentAlbum.length <= 1) return;
+    currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
+    updateModalContent();
+  };
+
+  // Helper to extract album from an experience card
+  const getCardAlbum = (cardEl: HTMLElement): GalleryItem[] => {
+    const thumbs = cardEl.querySelectorAll('.thumb-btn');
+    if (thumbs.length > 0) {
+      const list: GalleryItem[] = [];
+      thumbs.forEach((t) => {
+        const src = t.getAttribute('data-img') || '';
+        const caption = t.getAttribute('data-caption') || '';
+        if (src) list.push({ src, caption });
+      });
+      return list;
+    }
+    const mainImg = cardEl.querySelector('.exp-main-img');
+    if (mainImg) {
+      const src = mainImg.getAttribute('data-full') || '';
+      const caption = mainImg.getAttribute('data-caption') || '';
+      return src ? [{ src, caption }] : [];
+    }
+    return [];
+  };
+
   // Triggers
-  document.querySelectorAll('.zoom-btn, .thumb-btn').forEach((btn) => {
+  document.querySelectorAll('.thumb-btn').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const img = btn.getAttribute('data-img');
-      const caption = btn.getAttribute('data-caption') || '';
-      if (img) openLightbox(img, caption);
+      const card = btn.closest('.exp-full-card') as HTMLElement;
+      if (!card) return;
+      const album = getCardAlbum(card);
+      const clickedSrc = btn.getAttribute('data-img');
+      const idx = album.findIndex((it) => it.src === clickedSrc);
+      openLightbox(album, idx >= 0 ? idx : 0);
     });
   });
 
-  document.querySelectorAll('.lightbox-trigger').forEach((imgEl) => {
-    imgEl.addEventListener('click', () => {
-      const full = imgEl.getAttribute('data-full');
-      const caption = imgEl.getAttribute('data-caption') || '';
-      if (full) openLightbox(full, caption);
+  document.querySelectorAll('.lightbox-trigger, .zoom-btn').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = el.closest('.exp-full-card') as HTMLElement;
+      if (!card) return;
+      const album = getCardAlbum(card);
+      openLightbox(album, 0);
     });
   });
 
   closeBtn?.addEventListener('click', closeLightbox);
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeLightbox();
+  backdrop?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showPrev();
+  });
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showNext();
   });
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal?.classList.contains('open')) {
+    if (!modal?.classList.contains('open')) return;
+    if (e.key === 'Escape') {
       closeLightbox();
+    } else if (e.key === 'ArrowRight') {
+      showNext();
+    } else if (e.key === 'ArrowLeft') {
+      showPrev();
     }
   });
 </script>
