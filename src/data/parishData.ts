@@ -177,9 +177,10 @@ export const parishData: ParishConfig = {
     officeHours: "Lunes a Viernes de 8:30 am a 12:30 pm y de 2:30 pm a 6:00 pm. Sábados de 9:00 am a 12:00 pm."
   },
   social: {
-    facebook: "https://facebook.com",
-    instagram: "https://instagram.com",
-    youtube: "https://youtube.com"
+    // TODO: Replace with official parish page URLs once available
+    facebook: "",
+    instagram: "",
+    youtube: ""
   },
   schedules: {
     masses: [

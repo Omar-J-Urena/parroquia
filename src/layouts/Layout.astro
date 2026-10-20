@@ -52,6 +52,62 @@ const pageTitle = title.includes(parishData.name) ? title : `${title} | ${parish
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={image} />
 
+  <!-- Schema.org JSON-LD: Church / Place (Local SEO) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": parishData.fullName,
+    "alternateName": parishData.name,
+    "description": `${parishData.motto} Parroquia católica perteneciente a la ${parishData.diocese}.`,
+    "url": "https://parroquiasanlorenzo.org",
+    "logo": "https://parroquiasanlorenzo.org/images/parish-crest.svg",
+    "image": "https://parroquiasanlorenzo.org/images/6.jpeg",
+    "telephone": parishData.contact.phone,
+    "email": parishData.contact.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": parishData.address.street,
+      "addressLocality": "Santiago de los Caballeros",
+      "addressRegion": "Santiago",
+      "postalCode": parishData.address.postalCode,
+      "addressCountry": "DO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 19.46,
+      "longitude": -70.74
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "07:00",
+        "closes": "19:30",
+        "description": "Santa Misa: 7:00 am y 6:30 pm"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "19:30",
+        "description": "Despacho 9:00 am - 12:00 pm | Santa Misa: 6:30 pm"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "08:00",
+        "closes": "19:30",
+        "description": "Santa Misa: 8:00 am, 10:00 am (Familias), 6:30 pm (Jóvenes)"
+      }
+    ],
+    "sameAs": [],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": parishData.diocese,
+      "url": "https://arquidiocisissantiago.org"
+    }
+  })} />
+
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
