@@ -870,6 +870,33 @@ import { parishData } from '../data/parishData';
     .patron-grid {
       grid-template-columns: 1fr;
     }
+    .clergy-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-banner {
+      padding: 3rem 0 2.5rem;
+    }
+    .page-banner-sub {
+      font-size: 1rem;
+    }
+    .mv-card {
+      padding: 1.75rem;
+    }
+    .clergy-contact-callout {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.25rem;
+    }
+    .clergy-contact-callout .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    .patron-portrait-img {
+      max-height: 380px;
+    }
   }
 
   @media (max-width: 600px) {
@@ -886,10 +913,19 @@ import { parishData } from '../data/parishData';
       justify-content: flex-start;
       padding: 0;
     }
-    .clergy-contact-callout {
-      flex-direction: column;
-      align-items: flex-start;
+    .timeline-content {
+      padding: 1.1rem 1.25rem;
     }
+    .patron-feast-badge-box {
+      flex-direction: column;
+      gap: 0.65rem;
+      text-align: center;
+    }
+    .patron-famous-quote {
+      padding: 1rem 1rem 1rem 2.2rem;
+    }
+  }
+
   /* Parish Photo Grid */
   .parish-gallery-section {
     background-color: var(--color-ivory-warm);
@@ -936,6 +972,11 @@ import { parishData } from '../data/parishData';
   @media (max-width: 900px) {
     .parish-photo-grid {
       grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 200px;
+      gap: 1rem;
+    }
+    .parish-photo-item--wide {
+      grid-column: span 2;
     }
   }
 
@@ -943,6 +984,8 @@ import { parishData } from '../data/parishData';
     .parish-photo-grid {
       grid-template-columns: 1fr;
       grid-auto-rows: 200px;
+      gap: 0.75rem;
+      margin-top: 2rem;
     }
     .parish-photo-item--wide {
       grid-column: span 1;

@@ -352,6 +352,19 @@ const currentYear = new Date().getFullYear();
     }
   }
 
+  @media (max-width: 768px) {
+    .footer-main {
+      padding: 2.5rem 1rem 2rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .footer-top-accent {
+      padding: 1rem 0;
+    }
+  }
+
   @media (max-width: 600px) {
     .footer-grid {
       grid-template-columns: 1fr;
@@ -362,7 +375,11 @@ const currentYear = new Date().getFullYear();
       text-align: center;
     }
     .footer-motto {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    .footer-main {
+      padding: 2rem 0 1.75rem;
     }
   }
 </style>

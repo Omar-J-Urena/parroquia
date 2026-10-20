@@ -695,11 +695,45 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
   }
 
   @media (max-width: 768px) {
+    .page-banner {
+      padding: 3rem 0 2.5rem;
+    }
+    .page-banner-sub {
+      font-size: 1rem;
+    }
+    .gallery-filters {
+      margin-bottom: 2rem;
+    }
+    .gal-filter-btn {
+      font-size: 0.82rem;
+      padding: 0.5rem 1rem;
+    }
     .experiences-grid {
       grid-template-columns: 1fr;
     }
+    .exp-img-box {
+      height: 220px;
+    }
+    .exp-card-info {
+      padding: 1.25rem;
+    }
     .video-placeholder-frame {
-      height: 320px;
+      height: 260px;
+    }
+    .thumbs-header-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .img-badge-overlay {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .exp-card-title {
+      font-size: 1.25rem;
     }
   }
 </style>

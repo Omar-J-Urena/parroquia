@@ -349,7 +349,7 @@ import { parishData } from '../data/parishData';
   @media (max-width: 992px) {
     .hero-container {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2.5rem;
     }
     .hero-card {
       max-width: 520px;
@@ -361,7 +361,16 @@ import { parishData } from '../data/parishData';
   @media (max-width: 600px) {
     .hero-section {
       min-height: auto;
-      padding: 3.5rem 0;
+      padding: 2.5rem 0 3rem;
+    }
+    .hero-title {
+      font-size: clamp(1.9rem, 8vw, 2.8rem);
+    }
+    .hero-quote {
+      font-size: 1.05rem;
+    }
+    .hero-description {
+      font-size: 1rem;
     }
     .hero-actions {
       flex-direction: column;
@@ -369,11 +378,31 @@ import { parishData } from '../data/parishData';
     .hero-btn {
       width: 100%;
       text-align: center;
+      justify-content: center;
     }
     .mass-row {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.4rem;
+    }
+    .hero-card {
+      padding: 1.5rem;
+    }
+    .hero-card-header {
+      gap: 0.75rem;
+    }
+    .card-title {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .hero-section {
+      padding: 2rem 0 2.5rem;
+    }
+    .hero-badge-wrap .badge {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
     }
   }
 </style>

@@ -142,9 +142,25 @@ const steps = [
     margin: 0;
   }
 
+  @media (max-width: 768px) {
+    .first-time-guide {
+      padding: 2.5rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .guide-header {
+      margin-bottom: 2rem;
+    }
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+    .guide-title {
+      font-size: 1.65rem;
+    }
+  }
+
   @media (max-width: 600px) {
     .first-time-guide {
-      padding: 2rem 1.25rem;
+      padding: 1.75rem 1rem;
     }
     .guide-step-card {
       flex-direction: column;

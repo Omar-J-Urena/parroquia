@@ -258,6 +258,28 @@ import { parishData } from '../data/parishData';
     flex-shrink: 0;
   }
 
+  @media (max-width: 768px) {
+    .schedule-tabs {
+      gap: 0.45rem;
+      margin-bottom: 1.75rem;
+    }
+    .tab-btn {
+      font-size: 0.82rem;
+      padding: 0.6rem 1rem;
+      gap: 0.35rem;
+    }
+    .tab-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+    .schedule-grid {
+      grid-template-columns: 1fr;
+    }
+    .schedule-card {
+      padding: 1.25rem;
+    }
+  }
+
   @media (max-width: 600px) {
     .schedule-footer-bar {
       flex-direction: column;
@@ -265,6 +287,10 @@ import { parishData } from '../data/parishData';
     }
     .schedule-card-top {
       flex-direction: column;
+    }
+    .schedule-footer-bar .btn {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

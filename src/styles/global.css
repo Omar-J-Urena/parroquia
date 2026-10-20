@@ -56,6 +56,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
 }
 
 body {
@@ -64,6 +65,7 @@ body {
   flex-direction: column;
   line-height: 1.65;
   font-size: 1rem;
+  overflow-x: hidden; /* Belt-and-suspenders horizontal overflow prevention */
 }
 
 /* Typography styles */
@@ -307,6 +309,56 @@ img {
 :focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 3px;
+}
+
+/* ─── MOBILE RESPONSIVE BASE ─────────────────────── */
+@media (max-width: 768px) {
+  .container,
+  .container-narrow {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-description {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.8rem 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  h1 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+  h2 { font-size: clamp(1.5rem, 5.5vw, 2rem); }
+  h3 { font-size: clamp(1.15rem, 4vw, 1.5rem); }
+}
+
+@media (max-width: 480px) {
+  .container,
+  .container-narrow {
+    padding: 0 0.85rem;
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .btn {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.88rem;
+  }
+
+  /* Prevent images and media from overflowing their containers */
+  img, video, iframe, embed, object {
+    max-width: 100%;
+  }
 }
 
 /* Print styles */
