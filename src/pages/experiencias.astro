@@ -276,6 +276,22 @@ const categories = ['Todas', 'Celebración Litúrgica', 'Acción Social', 'Pasto
     border-color: rgba(197, 160, 89, 0.45);
   }
 
+  .exp-full-card:target {
+    scroll-margin-top: 6rem;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.45), var(--shadow-hover);
+    animation: targetPulse 2s ease-out;
+  }
+
+  @keyframes targetPulse {
+    0% {
+      box-shadow: 0 0 0 6px rgba(197, 160, 89, 0.65), var(--shadow-hover);
+    }
+    100% {
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.45), var(--shadow-hover);
+    }
+  }
+
   .exp-img-box {
     position: relative;
     height: 280px;

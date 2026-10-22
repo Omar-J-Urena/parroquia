@@ -540,25 +540,72 @@ export const parishData: ParishConfig = {
     },
     {
       id: "encuentros-pastoral-juvenil-nueva-vida",
-      title: "Jornadas y Retiros de la Pastoral Juvenil «Nueva Vida»",
-      date: "Encuentros Continuos",
+      title: "Reuniones y Encuentros de la Pastoral Juvenil «Nueva Vida»",
+      date: "Encuentros Semanales",
       category: "Pastoral Juvenil",
-      description: "Nuestros jóvenes se reúnen cada sábado para crecer en la fe, apoyarse mutuamente, realizar dinámicas formativas y proyectar el amor de Dios en sus familias y barrios.",
-      image: "/images/2.jpeg",
+      description: "Nuestros jóvenes se reúnen cada sábado en la parroquia para vivir su fe en comunidad, realizar dinámicas de integración al aire libre, círculos de reflexión bíblica, ejercicios de confianza y entrega de reconocimientos al compromiso y liderazgo juvenil.",
+      image: "/images/62.jpeg",
       gallery: [
+        "/images/62.jpeg",
+        "/images/63.jpeg",
+        "/images/64.jpeg",
+        "/images/65.jpeg",
+        "/images/66.jpeg",
+        "/images/67.jpeg",
+        "/images/68.jpeg",
+        "/images/69.jpeg",
+        "/images/70.jpeg",
+        "/images/71.jpeg",
+        "/images/72.jpeg",
+        "/images/73.jpeg",
+        "/images/74.jpeg",
+        "/images/75.jpeg",
+        "/images/76.jpeg",
         "/images/1.jpeg",
         "/images/2.jpeg",
         "/images/3.jpeg",
         "/images/4.jpeg",
         "/images/5.jpeg"
       ],
-      relatedMinistry: "Pastoral Juvenil Nueva Vida"
+      relatedMinistry: "Pastoral Juvenil «Nueva Vida»"
+    },
+    {
+      id: "taller-pensando-genero",
+      title: "Taller: «Pensando lo que creemos sobre el género»",
+      date: "2025",
+      category: "Pastoral Juvenil",
+      description: "Jornada formativa y reflexiva desarrollada en el salón parroquial orientada a reflexionar sobre equidad, romper estereotipos, fomentar la tolerancia, el respeto mutuo y prevenir toda forma de violencia a la luz de los principios y valores cristianos.",
+      image: "/images/79.jpeg",
+      gallery: [
+        "/images/79.jpeg",
+        "/images/77.jpeg",
+        "/images/78.jpeg",
+        "/images/80.jpeg",
+        "/images/81.jpeg"
+      ],
+      relatedMinistry: "Pastoral Juvenil «Nueva Vida»"
+    },
+    {
+      id: "festival-artes-miriam-2025",
+      title: "Festival de las Artes Miriam 2025: Raíces de Esperanza",
+      date: "2025",
+      category: "Arte y Liturgia",
+      description: "Gala cultural y artística donde la juventud de nuestra comunidad subió al gran escenario del Festival Miriam bajo el lema «Raíces de Esperanza», compartiendo su talento en danza, teatro y alabanza con alegría y fervor comunitario.",
+      image: "/images/82.jpeg",
+      gallery: [
+        "/images/82.jpeg",
+        "/images/83.jpeg",
+        "/images/84.jpeg",
+        "/images/85.jpeg",
+        "/images/86.jpeg"
+      ],
+      relatedMinistry: "Pastoral Juvenil y Expresiones Artísticas"
     },
     {
       id: "alianza-educativa-social",
       title: "Jornada Comunitaria de Formación en Valores y Acción Social",
       date: "Octubre",
-      category: "Acción Social y Educación",
+      category: "Acción Social",
       description: "En estrecha articulación con las escuelas y obras sociales de Cienfuegos, la parroquia lleva a cabo jornadas de formación en valores, apoyo escolar y ayuda solidaria para el desarrollo humano en Santiago Oeste.",
       image: "/images/10.jpeg",
       gallery: [
@@ -589,7 +636,7 @@ export const parishData: ParishConfig = {
       id: "concierto-navidad-coro-infantil",
       title: "Tradicional Concierto de Navidad del Coro Infantil de San Lorenzo",
       date: "Diciembre",
-      category: "Arte Coral y Cultura",
+      category: "Arte y Liturgia",
       description: "El prestigioso Coro Infantil de la Parroquia San Lorenzo, bajo la dirección del maestro Edward Grullón Tavares (Edward Gruta), deleita a las familias de Santiago Oeste con un memorable concierto navideño que llena de gozo y espíritu cristiano a toda la comunidad.",
       image: "/images/20.jpeg",
       gallery: [

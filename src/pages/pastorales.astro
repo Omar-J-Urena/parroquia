@@ -436,48 +436,112 @@ const categories = [
       </div><!-- /testimonials-grid -->
 
       <!-- ========================================================
-           PASTORAL JUVENIL «NUEVA VIDA» - MOMENTOS (Fotos 1 a 5)
+           MOMENTOS DESTACADOS DE LA PASTORAL JUVENIL (REUNIONES Y ENCUENTROS)
            ======================================================== -->
-      <div class="pastoral-moments-showcase" aria-label="Momentos de Pastoral Juvenil Nueva Vida">
+      <div class="pastoral-moments-showcase" aria-label="Momentos y Reuniones de la Pastoral Juvenil Nueva Vida">
         <div class="moments-header">
           <span class="moments-pill">Vida en Fraternidad</span>
-          <h3 class="moments-title">Momentos de la Pastoral Juvenil «Nueva Vida»</h3>
+          <h3 class="moments-title">Reuniones y Momentos de la Pastoral Juvenil «Nueva Vida»</h3>
           <p class="moments-sub">
-            Encuentros, retiros y dinámicas comunitarias donde compartimos la alegría del Evangelio en la Parroquia San Lorenzo.
+            Encuentros semanales, dinámicas al aire libre, círculos de oración, formación cristiana y entrega de reconocimientos donde compartimos la alegría del Evangelio en la Parroquia San Lorenzo.
           </p>
         </div>
 
         <div class="moments-grid">
+          <!-- 1. Hero: Reconocimientos (62) -->
           <div class="moment-card moment-card--hero">
+            <img src="/images/62.jpeg" alt="Entrega de reconocimientos en la Pastoral Juvenil" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-badge">Liderazgo y Reconocimientos</span>
+              <span class="moment-caption">Premiando la fidelidad, el esfuerzo y el liderazgo de nuestros jóvenes</span>
+            </div>
+          </div>
+
+          <!-- 2. Amistad en el patio (70) -->
+          <div class="moment-card">
+            <img src="/images/70.jpeg" alt="Jóvenes de San Lorenzo reunidos en el patio parroquial" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Alegría y hermandad sincera en Cristo</span>
+            </div>
+          </div>
+
+          <!-- 3. Dinámica de confianza (76) -->
+          <div class="moment-card">
+            <img src="/images/76.jpeg" alt="Dinámica grupal de confianza y apoyo mutuo" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Dinámica de confianza y sostén fraterno</span>
+            </div>
+          </div>
+
+          <!-- 4. Reflexión al atardecer (64) -->
+          <div class="moment-card">
+            <img src="/images/64.jpeg" alt="Círculo de oración y reflexión al atardecer" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Círculo de diálogo y oración compartida</span>
+            </div>
+          </div>
+
+          <!-- 5. Convivencia comunitaria (72) -->
+          <div class="moment-card">
+            <img src="/images/72.jpeg" alt="Convivencia comunitaria en el patio de la parroquia" loading="lazy" />
+            <div class="moment-overlay">
+              <span class="moment-caption">Convivencia juvenil en San Lorenzo</span>
+            </div>
+          </div>
+
+          <!-- 6. Encuentro en salón (1) -->
+          <div class="moment-card">
             <img src="/images/1.jpeg" alt="Pastoral Juvenil Nueva Vida compartiendo en comunidad" loading="lazy" />
             <div class="moment-overlay">
-              <span class="moment-badge">Encuentro Comunitario</span>
-              <span class="moment-caption">Caminando juntos en la fe y la amistad</span>
+              <span class="moment-caption">Formación y unidad comunitaria</span>
             </div>
           </div>
+
+          <!-- 7. Unión y alegría (68) -->
           <div class="moment-card">
-            <img src="/images/2.jpeg" alt="Jóvenes de San Lorenzo reunidos en alegría" loading="lazy" />
+            <img src="/images/68.jpeg" alt="Jóvenes compartiendo fraternalmente" loading="lazy" />
             <div class="moment-overlay">
-              <span class="moment-caption">Unidad y oración en Cristo</span>
+              <span class="moment-caption">Unidad y carisma juvenil</span>
             </div>
           </div>
+
+          <!-- 8. Trabajo en equipo (74) -->
           <div class="moment-card">
-            <img src="/images/3.jpeg" alt="Reflexión bíblica y dinámicas juveniles" loading="lazy" />
+            <img src="/images/74.jpeg" alt="Dinámicas de integración y trabajo en equipo" loading="lazy" />
             <div class="moment-overlay">
-              <span class="moment-caption">Dinámicas y fraternidad viva</span>
+              <span class="moment-caption">Trabajo en equipo y sana convivencia</span>
             </div>
           </div>
+
+          <!-- 9. Formación y compromiso (66) -->
           <div class="moment-card">
-            <img src="/images/4.jpeg" alt="Encuentro en el salón parroquial" loading="lazy" />
+            <img src="/images/66.jpeg" alt="Reflexión bíblica y compromiso cristiano" loading="lazy" />
             <div class="moment-overlay">
-              <span class="moment-caption">Formación y compromiso</span>
+              <span class="moment-caption">Compromiso cristiano y testimonio vivo</span>
             </div>
           </div>
-          <div class="moment-card">
-            <img src="/images/5.jpeg" alt="Misión juvenil en Santiago Oeste" loading="lazy" />
-            <div class="moment-overlay">
-              <span class="moment-caption">Sembrando esperanza en Cienfuegos</span>
+        </div>
+
+        <!-- Carrusel de fotos de reuniones pastorales -->
+        <div class="meetings-strip-card">
+          <div class="meetings-strip-header">
+            <div>
+              <span class="badge badge-gold">Álbum Completo de Reuniones</span>
+              <h4 class="meetings-strip-title">Galería de Encuentros Semanales</h4>
+              <p class="meetings-strip-desc">Revive cada momento de nuestros encuentros de sábado: dinámicas, recreación, círculos de fe y entrega de diplomas.</p>
             </div>
+            <a href="/experiencias#encuentros-pastoral-juvenil-nueva-vida" class="btn btn-primary btn-sm">
+              <span>Ver álbum en Galería</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+
+          <div class="meetings-thumbs-scroller" aria-label="Carrusel de fotos de reuniones pastorales">
+            {[62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76].map((num) => (
+              <a href="/experiencias#encuentros-pastoral-juvenil-nueva-vida" class="meeting-strip-item" title="Reunión Pastoral Juvenil">
+                <img src={`/images/${num}.jpeg`} alt="Reunión Pastoral Juvenil" loading="lazy" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -490,12 +554,66 @@ const categories = [
           <span class="moments-pill">Historia y Fraternidad</span>
           <h3 class="events-showcase-title">Grandes Eventos de Nuestra Pastoral</h3>
           <p class="events-showcase-sub">
-            Revive las experiencias inolvidables que marcan el corazón de nuestra juventud: campamentos de fe, expresiones folclóricas, senderismo ecológico y fiestas comunitarias.
+            Revive las experiencias inolvidables que marcan el corazón de nuestra juventud: campamentos de fe, expresiones folclóricas, festivales de arte, talleres formativos, senderismo ecológico y fiestas comunitarias.
           </p>
         </div>
 
         <div class="events-cards-grid">
-          <!-- 1. Campamento Enciéndete 2025 -->
+          <!-- 1. Festival de las Artes Miriam 2025 -->
+          <article class="p-event-card">
+            <div class="p-event-media">
+              <img src="/images/82.jpeg" alt="Festival de las Artes Miriam 2025: Raíces de Esperanza" loading="lazy" />
+              <div class="p-event-badges">
+                <span class="badge badge-gold">Arte y Cultura 2025</span>
+                <span class="badge badge-dark">5 Fotos</span>
+              </div>
+            </div>
+            <div class="p-event-content">
+              <h4 class="p-event-title">Festival de las Artes Miriam 2025</h4>
+              <p class="p-event-desc">
+                Nuestros jóvenes brillaron en el gran escenario teatral durante el festival «Raíces de Esperanza», desplegando su talento artístico en danza, teatro y música sacra con aplausos y fervor de toda la asamblea.
+              </p>
+              <div class="p-event-preview-strip">
+                <img src="/images/82.jpeg" alt="Elenco en el escenario" title="Elenco en el escenario" />
+                <img src="/images/83.jpeg" alt="Iluminación y aplausos" title="Iluminación y aplausos" />
+                <img src="/images/85.jpeg" alt="Celebración del equipo" title="Celebración del equipo" />
+                <img src="/images/86.jpeg" alt="Gala Raíces de Esperanza" title="Gala Raíces de Esperanza" />
+              </div>
+              <a href="/experiencias#festival-artes-miriam-2025" class="p-event-link">
+                <span>Ver álbum completo (5 fotos)</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- 2. Taller: Pensando lo que creemos sobre el género -->
+          <article class="p-event-card">
+            <div class="p-event-media">
+              <img src="/images/79.jpeg" alt="Taller: Pensando lo que creemos sobre el género" loading="lazy" />
+              <div class="p-event-badges">
+                <span class="badge badge-gold">Taller Formativo</span>
+                <span class="badge badge-dark">5 Fotos</span>
+              </div>
+            </div>
+            <div class="p-event-content">
+              <h4 class="p-event-title">Taller: «Pensando lo que creemos sobre el género»</h4>
+              <p class="p-event-desc">
+                Encuentro reflexivo y participativo con dinámicas de grupo («Rompiendo estereotipos») para dialogar sobre relaciones basadas en el respeto mutuo, la prevención de la violencia y la igualdad cristiana.
+              </p>
+              <div class="p-event-preview-strip">
+                <img src="/images/79.jpeg" alt="Pancarta grupal del taller" title="Pancarta grupal del taller" />
+                <img src="/images/77.jpeg" alt="Exposición y diálogo" title="Exposición y diálogo" />
+                <img src="/images/78.jpeg" alt="Trabajo en círculos" title="Trabajo en círculos" />
+                <img src="/images/80.jpeg" alt="Dinámica de integración" title="Dinámica de integración" />
+              </div>
+              <a href="/experiencias#taller-pensando-genero" class="p-event-link">
+                <span>Ver álbum del taller (5 fotos)</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- 3. Campamento Enciéndete 2025 -->
           <article class="p-event-card">
             <div class="p-event-media">
               <img src="/images/35.jpeg" alt="Campamento Enciéndete 2025" loading="lazy" />
@@ -522,7 +640,7 @@ const categories = [
             </div>
           </article>
 
-          <!-- 2. Senderismo 2026 -->
+          <!-- 4. Senderismo 2026 -->
           <article class="p-event-card">
             <div class="p-event-media">
               <img src="/images/61.jpeg" alt="Senderismo Juvenil 2026" loading="lazy" />
@@ -549,7 +667,7 @@ const categories = [
             </div>
           </article>
 
-          <!-- 3. Baile Folclórico -->
+          <!-- 5. Baile Folclórico -->
           <article class="p-event-card">
             <div class="p-event-media">
               <img src="/images/40.jpeg" alt="Baile Folclórico de la Pastoral Juvenil" loading="lazy" />
@@ -576,7 +694,7 @@ const categories = [
             </div>
           </article>
 
-          <!-- 4. Fiesta Enciende Tus Pasos -->
+          <!-- 6. Fiesta Enciende Tus Pasos -->
           <article class="p-event-card">
             <div class="p-event-media">
               <img src="/images/44.jpeg" alt="Fiesta Enciende Tus Pasos" loading="lazy" />
@@ -1343,6 +1461,109 @@ const categories = [
       width: 155px;
       height: 195px;
     }
+  }
+
+  /* Meetings Strip Card (Fotos 62 a 76) */
+  .meetings-strip-card {
+    margin-top: 2.2rem;
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .meetings-strip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meetings-strip-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--color-burgundy-dark);
+    margin: 0.5rem 0 0.35rem 0;
+  }
+
+  .meetings-strip-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 650px;
+    line-height: 1.55;
+  }
+
+  .meetings-thumbs-scroller {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem 1rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .meetings-thumbs-scroller::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .meetings-thumbs-scroller::-webkit-scrollbar-track {
+    background: #f4efe9;
+    border-radius: var(--radius-full);
+  }
+
+  .meetings-thumbs-scroller::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+  }
+
+  .meetings-thumbs-scroller::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+  }
+
+  .meeting-strip-item {
+    position: relative;
+    width: 95px;
+    height: 95px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    transition: var(--transition-smooth);
+    display: block;
+  }
+
+  .meeting-strip-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .meeting-strip-item:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: var(--color-gold);
+    box-shadow: 0 6px 14px rgba(114, 34, 55, 0.18);
+  }
+
+  .meeting-strip-item:hover img {
+    transform: scale(1.12);
+  }
+
+  .strip-item-num {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #FAF5EE;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 4px;
+    backdrop-filter: blur(2px);
   }
 
   /* Badge overrides for use ON TOP of images */
