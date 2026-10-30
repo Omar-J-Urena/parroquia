@@ -11,6 +11,7 @@ export interface ClergyMember {
   role: string;
   bio: string;
   quote?: string;
+  image?: string;
 }
 
 export interface Ministry {
@@ -247,7 +248,8 @@ export const parishData: ParishConfig = {
       name: "Rvdo. P. Roberto Escaño",
       role: "Administrador Parroquial",
       bio: "Sacerdote al frente de la administración pastoral de la Parroquia San Lorenzo en la Arquidiócesis de Santiago de los Caballeros. Con celo apostólico y cercanía a la comunidad, guía la vida espiritual, el trabajo pastoral con las familias y el compromiso social en Monte Bonito y Cienfuegos.",
-      quote: "«Nuestra misión en Santiago Oeste es ser una Iglesia viva, servidora y de puertas abiertas, donde cada familia encuentre consuelo, dignidad y la luz del Evangelio.»"
+      quote: "«Nuestra misión en Santiago Oeste es ser una Iglesia viva, servidora y de puertas abiertas, donde cada familia encuentre consuelo, dignidad y la luz del Evangelio.»",
+      image: "/images/101.jpeg"
     },
     {
       name: "Consejo Pastoral y Comunitario",
@@ -315,24 +317,45 @@ export const parishData: ParishConfig = {
   ministries: [
     {
       id: "coro-infantil-san-lorenzo",
-      name: "Coro Infantil de la Parroquia San Lorenzo",
+      name: "Coro Parroquial e Infantil de San Lorenzo",
       category: "liturgia",
       categoryLabel: "Música y Cultura",
       shortDesc: "Iniciativa artística y religiosa dirigida por el maestro Edward Grullón Tavares (Edward Gruta), orgullo de Santiago Oeste.",
-      fullDesc: "Destacada agrupación coral que agrupa a niños y niñas de familias católicas de la zona de Cienfuegos y Monte Bonito. Bajo la experta dirección del maestro Edward Grullón Tavares (Edward Gruta), el coro es ampliamente reconocido en la Arquidiócesis por sus hermosas interpretaciones en festividades religiosas y sus tradicionales y esperados conciertos de Navidad.",
-      targetAudience: "Niños y niñas de la comunidad (7 a 15 años) con vocación por el canto y la música litúrgica",
+      fullDesc: "Destacada agrupación coral que agrupa a niños, jóvenes y familias de la zona de Cienfuegos y Monte Bonito. Bajo la experta dirección del maestro Edward Grullón Tavares (Edward Gruta), el coro es ampliamente reconocido en la Arquidiócesis por sus hermosas interpretaciones en festividades religiosas, animación litúrgica en la Santa Misa y sus tradicionales y esperados conciertos de Navidad.",
+      targetAudience: "Niños, jóvenes y adultos de la comunidad con vocación por el canto y la música litúrgica",
       activities: [
-        "Formación vocal, respiración y técnica de canto coral infantil",
+        "Formación vocal, respiración y técnica de canto coral litúrgico",
         "Ensayos semanales para el repertorio litúrgico, clásico y festivo",
-        "Animación musical de solemnidades religiosas y fiestas patronales",
+        "Animación musical de solemnidades religiosas, Santa Misa dominical y fiestas patronales",
         "Presentación de los tradicionales Conciertos de Navidad en la comunidad"
       ],
-      schedule: "Ensayos semanales (horarios por grupos corales)",
+      schedule: "Ensayos semanales y animación litúrgica en Misas",
       location: "Templo Parroquial San Lorenzo / Salón Comunitario",
       contactPerson: "Mtro. Edward Grullón Tavares (Edward Gruta)",
       contactEmail: "coro@parroquiasanlorenzo.org",
-      image: "/images/choir-liturgy.jpg",
+      image: "/images/103.jpeg",
       icon: "music"
+    },
+    {
+      id: "grupo-de-lectores",
+      name: "Grupo de Lectura y Proclamadores de la Palabra",
+      category: "liturgia",
+      categoryLabel: "Liturgia",
+      shortDesc: "Proclamación de las Sagradas Escrituras y animación bíblica en cada celebración litúrgica.",
+      fullDesc: "Servidores laicos dedicados a la reverente proclamación de la Palabra viva de Dios en el ambón. Con preparación espiritual, dicción litúrgica y amor por las Sagradas Escrituras, guían las lecturas, salmos y oraciones comunitarias durante la Santa Misa.",
+      targetAudience: "Jóvenes y adultos con devoción por las Sagradas Escrituras y el servicio litúrgico",
+      activities: [
+        "Proclamación de las lecturas bíblicas y salmos responsoriales en Misas dominicales y festivas",
+        "Animación litúrgica y preparación de las preces universales de la asamblea",
+        "Talleres periódicos de formación bíblica, expresión oral y espiritualidad de la Palabra",
+        "Encuentros de oración y meditación comunitaria de las lecturas dominicales"
+      ],
+      schedule: "Servicio en Misas | Talleres y preparación litúrgica",
+      location: "Templo Parroquial San Lorenzo (Presbiterio y Ambón)",
+      contactPerson: "Coordinación del Grupo de Lectores",
+      contactEmail: "liturgia@parroquiasanlorenzo.org",
+      image: "/images/100.jpeg",
+      icon: "book-open"
     },
     {
       id: "pastoral-social-educativa",
@@ -437,11 +460,80 @@ export const parishData: ParishConfig = {
       location: "Templo Parroquial San Lorenzo",
       contactPerson: "Equipo de Liturgia Parroquial",
       contactEmail: "liturgia@parroquiasanlorenzo.org",
-      image: "/images/interior-mass.jpg",
+      image: "/images/95.jpeg",
       icon: "cross"
     }
   ],
   experiences: [
+    {
+      id: "santa-misa-comunitaria",
+      title: "Solemne Celebración Eucarística y Santa Misa Parroquial",
+      date: "Celebración Dominical",
+      category: "Celebración Litúrgica",
+      description: "La comunidad de la Parroquia San Lorenzo se congrega en el templo para vivir el misterio de la Santa Eucaristía presidida por el Rvdo. P. Roberto Escaño. Un encuentro de fe viva, ofrendas, oración comunitaria, comunión fraternal y bendición para las familias de Santiago Oeste.",
+      image: "/images/95.jpeg",
+      gallery: [
+        "/images/95.jpeg",
+        "/images/104.jpeg",
+        "/images/93.jpeg",
+        "/images/94.jpeg",
+        "/images/96.jpeg",
+        "/images/97.jpeg",
+        "/images/98.jpeg",
+        "/images/99.jpeg",
+        "/images/101.jpeg",
+        "/images/102.jpeg",
+        "/images/105.jpeg"
+      ],
+      relatedMinistry: "Equipo de Liturgia y Servidores del Altar"
+    },
+    {
+      id: "grupo-de-lectura-misa",
+      title: "Grupo de Lectura: Proclamación de la Palabra de Dios",
+      date: "Celebraciones Litúrgicas",
+      category: "Celebración Litúrgica",
+      description: "Los integrantes del Grupo de Lectura y Proclamadores de la Palabra visten sus albas litúrgicas para proclamar con reverencia y devoción las Sagradas Escrituras desde el ambón durante la Santa Misa.",
+      image: "/images/100.jpeg",
+      gallery: [
+        "/images/100.jpeg",
+        "/images/106.jpeg"
+      ],
+      relatedMinistry: "Grupo de Lectores y Proclamadores"
+    },
+    {
+      id: "coro-animacion-liturgica",
+      title: "Ministerio de Canto y Animación Litúrgica del Coro",
+      date: "Celebraciones Litúrgicas",
+      category: "Arte y Liturgia",
+      description: "El coro parroquial acompaña la Santa Misa con cantos litúrgicos de alabanza, adoración y acción de gracias, guiando la oración cantada de toda la asamblea reunida en el templo de San Lorenzo.",
+      image: "/images/103.jpeg",
+      gallery: [
+        "/images/103.jpeg",
+        "/images/102.jpeg",
+        "/images/20.jpeg",
+        "/images/21.jpeg",
+        "/images/22.jpeg",
+        "/images/23.jpeg"
+      ],
+      relatedMinistry: "Coro Parroquial de San Lorenzo"
+    },
+    {
+      id: "formacion-pastoral-juvenil",
+      title: "Jornada de Formación y Convivencia de la Pastoral Juvenil",
+      date: "Encuentro Comunitario",
+      category: "Pastoral Juvenil",
+      description: "Jóvenes de nuestra comunidad reunidos en el patio parroquial en jornadas de formación cristiana, dinámicas grupales, reflexión y entrega de reconocimientos al esfuerzo y perseverancia pastoral.",
+      image: "/images/87.jpeg",
+      gallery: [
+        "/images/87.jpeg",
+        "/images/88.jpeg",
+        "/images/89.jpeg",
+        "/images/90.jpeg",
+        "/images/91.jpeg",
+        "/images/92.jpeg"
+      ],
+      relatedMinistry: "Pastoral Juvenil «Nueva Vida»"
+    },
     {
       id: "senderismo-juvenil-2026",
       title: "Senderismo Juvenil 2026",
