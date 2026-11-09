@@ -3,9 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { parishData } from '../data/parishData';
 import '../styles/global.css';
-import { inject } from '@vercel/analytics';
-
-inject();
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title?: string;
@@ -30,6 +28,7 @@ const pageTitle = title.includes(parishData.name) ? title : `${title} | ${parish
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
+  <Analytics />
 
   <!-- Primary Meta Tags -->
   <title>{pageTitle}</title>
