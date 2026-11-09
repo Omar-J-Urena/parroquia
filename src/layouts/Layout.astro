@@ -3,6 +3,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { parishData } from '../data/parishData';
 import '../styles/global.css';
+import { inject } from '@vercel/analytics';
+
+inject();
 
 interface Props {
   title?: string;
